@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <form @submit.prevent="submitHandler">
+    <form @submit.prevent="login">
       <v-main>
         <v-container class="fill-height" fluid>
           <v-row align="center" justify="center">
@@ -37,7 +37,7 @@
                   >
                     Sign-up
                   </router-link>
-                  <v-btn color="primary" type="submit">Login</v-btn>
+                  <v-btn color="primary">Login</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -50,12 +50,15 @@
 
 <script>
 export default {
-  data: () => ({
-    email: "",
-    password: ""
-  }),
+  props: {
+    source: String
+  },
   methods: {
     async submitHandler() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
       const formData = {
         email: this.email,
         password: this.password
@@ -64,9 +67,7 @@ export default {
         await this.$store.dispatch("login", formData);
         this.$router.push("/");
         // eslint-disable-next-line no-empty
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     }
   }
 };

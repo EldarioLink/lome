@@ -60,6 +60,7 @@ export default {
     password: "",
     name: ""
   }),
+
   methods: {
     async submitHandler() {
       const formData = {

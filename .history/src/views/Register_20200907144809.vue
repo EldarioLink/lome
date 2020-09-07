@@ -1,6 +1,5 @@
 <template>
   <v-app id="inspire">
-    <form @submit.prevent="submitHandler"></form>
     <v-main>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
@@ -25,13 +24,6 @@
                     prepend-icon="mdi-lock"
                     type="password"
                   ></v-text-field>
-                  <v-text-field
-                    id="confirm password"
-                    label="Confirm password"
-                    name="password"
-                    prepend-icon="mdi-lock"
-                    type="password"
-                  ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -43,7 +35,7 @@
                 >
                   Sign-in
                 </router-link>
-                <v-btn color="primary" type="submit"> Register</v-btn>
+                <v-btn color="primary">Register</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -55,24 +47,8 @@
 
 <script>
 export default {
-  data: () => ({
-    email: "",
-    password: "",
-    name: ""
-  }),
-  methods: {
-    async submitHandler() {
-      const formData = {
-        email: this.email,
-        password: this.password,
-        name: this.name
-      };
-      try {
-        await this.$store.dispatch("register", formData);
-        this.$router.push("/");
-        // eslint-disable-next-line no-empty
-      } catch (e) {}
-    }
+  props: {
+    source: String
   }
 };
 </script>

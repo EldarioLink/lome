@@ -55,11 +55,11 @@
 
 <script>
 export default {
-  data: () => ({
+  props: {
     email: "",
     password: "",
     name: ""
-  }),
+  },
   methods: {
     async submitHandler() {
       const formData = {

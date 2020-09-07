@@ -37,7 +37,7 @@
                   >
                     Sign-up
                   </router-link>
-                  <v-btn color="primary" type="submit">Login</v-btn>
+                  <v-btn color="primary">Login</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -50,10 +50,12 @@
 
 <script>
 export default {
-  data: () => ({
-    email: "",
-    password: ""
-  }),
+  data: function() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
   methods: {
     async submitHandler() {
       const formData = {

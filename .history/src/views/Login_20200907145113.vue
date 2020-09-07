@@ -1,13 +1,13 @@
 <template>
   <v-app id="inspire">
-    <form @submit.prevent="submitHandler"></form>
     <v-main>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="4">
             <v-card class="elevation-12">
               <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Register form</v-toolbar-title>
+                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-spacer></v-spacer>
               </v-toolbar>
               <v-card-text>
                 <v-form>
@@ -25,25 +25,19 @@
                     prepend-icon="mdi-lock"
                     type="password"
                   ></v-text-field>
-                  <v-text-field
-                    id="confirm password"
-                    label="Confirm password"
-                    name="password"
-                    prepend-icon="mdi-lock"
-                    type="password"
-                  ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
+                <v-text>if you not in the system, pls</v-text>
                 <v-spacer></v-spacer>
                 <router-link
-                  to="/login"
+                  to="/register"
                   color="primary"
                   class="pr-6 text-decoration-none"
                 >
-                  Sign-in
+                  Sign-up
                 </router-link>
-                <v-btn color="primary" type="submit"> Register</v-btn>
+                <v-btn color="primary" @click="login">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -55,23 +49,12 @@
 
 <script>
 export default {
-  data: () => ({
-    email: "",
-    password: "",
-    name: ""
-  }),
+  props: {
+    source: String
+  },
   methods: {
-    async submitHandler() {
-      const formData = {
-        email: this.email,
-        password: this.password,
-        name: this.name
-      };
-      try {
-        await this.$store.dispatch("register", formData);
-        this.$router.push("/");
-        // eslint-disable-next-line no-empty
-      } catch (e) {}
+    login() {
+      console.log("login");
     }
   }
 };

@@ -43,7 +43,7 @@
                 >
                   Sign-in
                 </router-link>
-                <v-btn color="primary" type="submit"> Register</v-btn>
+                <v-btn color="primary">Register</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -55,13 +55,16 @@
 
 <script>
 export default {
-  data: () => ({
-    email: "",
-    password: "",
-    name: ""
-  }),
+  props: {
+    source: String
+  },
   methods: {
-    async submitHandler() {
+        async submitHandler() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
+
       const formData = {
         email: this.email,
         password: this.password,
@@ -72,6 +75,7 @@ export default {
         this.$router.push("/");
         // eslint-disable-next-line no-empty
       } catch (e) {}
+    }
     }
   }
 };

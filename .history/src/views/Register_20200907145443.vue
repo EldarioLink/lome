@@ -1,6 +1,5 @@
 <template>
   <v-app id="inspire">
-    <form @submit.prevent="submitHandler"></form>
     <v-main>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
@@ -43,7 +42,7 @@
                 >
                   Sign-in
                 </router-link>
-                <v-btn color="primary" type="submit"> Register</v-btn>
+                <v-btn color="primary" @click="register">Register</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -55,23 +54,12 @@
 
 <script>
 export default {
-  data: () => ({
-    email: "",
-    password: "",
-    name: ""
-  }),
+  props: {
+    source: String
+  },
   methods: {
-    async submitHandler() {
-      const formData = {
-        email: this.email,
-        password: this.password,
-        name: this.name
-      };
-      try {
-        await this.$store.dispatch("register", formData);
-        this.$router.push("/");
-        // eslint-disable-next-line no-empty
-      } catch (e) {}
+    register() {
+      console.log("register");
     }
   }
 };
