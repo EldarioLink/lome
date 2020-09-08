@@ -29,7 +29,6 @@ firebase.initializeApp(firebaseConfig);
 
 let app;
 firebase.auth().onAuthStateChanged(() => {
-  console.log("app", app);
   if (!app) {
     new Vue({
       router,

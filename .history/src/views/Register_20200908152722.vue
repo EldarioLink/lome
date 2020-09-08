@@ -9,7 +9,7 @@
                 <v-toolbar-title>Register form</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form v-model="isValid">
+                <v-form @submit.prevent="submitHandler" v-model="isValid">
                   <v-text-field
                     label="email"
                     name="email"
@@ -57,11 +57,7 @@
                 >
                   Sign-in
                 </router-link>
-                <v-btn
-                  color="primary"
-                  @click="submitHandler"
-                  :disabled="!isValid"
-                >
+                <v-btn color="primary" type="submit" :disabled="!isValid">
                   Register</v-btn
                 >
               </v-card-actions>
@@ -86,16 +82,13 @@ export default {
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
         "E-mail must be valid",
       passLength: v =>
-        (v && v.length >= 6) || "Password must have 5+ characters",
+        (v && v.length >= 5) || "Password must have 5+ characters",
       passNumber: v => /(?=.*\d)/.test(v) || "Must have one number",
       passConfirm: () =>
         this.password === this.passwordConfirm || "Password must be same"
     }
   }),
   methods: {
-    home() {
-      console.log("home");
-    },
     async submitHandler() {
       console.log("Do THat");
       const formData = {
@@ -109,9 +102,7 @@ export default {
         await this.$store.dispatch("register", formData);
         this.$router.push("/");
         // eslint-disable-next-line no-empty
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     }
   }
 };

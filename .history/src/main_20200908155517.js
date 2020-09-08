@@ -6,6 +6,8 @@ import store from "./store";
 
 import firebase from "firebase/app";
 
+import { mdiExitRun } from "@mdi/js";
+
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
@@ -27,15 +29,9 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-let app;
-firebase.auth().onAuthStateChanged(() => {
-  console.log("app", app);
-  if (!app) {
-    new Vue({
-      router,
-      store,
-      vuetify,
-      render: h => h(App)
-    }).$mount("#app");
-  }
-});
+new Vue({
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
+}).$mount("#app");

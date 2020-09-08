@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <form @submit.prevent="submitHandler"></form>
     <v-main>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
@@ -9,15 +10,13 @@
                 <v-toolbar-title>Register form</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form v-model="isValid">
+                <v-form>
                   <v-text-field
-                    label="email"
-                    name="email"
+                    label="Login"
+                    name="login"
                     prepend-icon="mdi-account"
                     type="text"
                     v-model.trim="email"
-                    required
-                    :rules="[rules.required, rules.email]"
                   ></v-text-field>
 
                   <v-text-field
@@ -26,13 +25,7 @@
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
-                    v-model.trim="password"
-                    required
-                    :rules="[
-                      rules.required,
-                      rules.passNumber,
-                      rules.passLength
-                    ]"
+                    v-model.trim="email"
                   ></v-text-field>
                   <v-text-field
                     id="confirm password"
@@ -40,11 +33,6 @@
                     name="password"
                     prepend-icon="mdi-lock"
                     type="password"
-                    v-model.trim="passwordConfirm"
-                    required
-                    :rules="[
-                      password === passwordConfirm || 'Password must match'
-                    ]"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -57,13 +45,7 @@
                 >
                   Sign-in
                 </router-link>
-                <v-btn
-                  color="primary"
-                  @click="submitHandler"
-                  :disabled="!isValid"
-                >
-                  Register</v-btn
-                >
+                <v-btn color="primary" type="submit"> Register</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -78,40 +60,20 @@ export default {
   data: () => ({
     email: "",
     password: "",
-    passwordConfirm: "",
-    isValid: false,
-    rules: {
-      required: v => !!v || "Required",
-      email: v =>
-        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-        "E-mail must be valid",
-      passLength: v =>
-        (v && v.length >= 6) || "Password must have 5+ characters",
-      passNumber: v => /(?=.*\d)/.test(v) || "Must have one number",
-      passConfirm: () =>
-        this.password === this.passwordConfirm || "Password must be same"
-    }
+    name: ""
   }),
   methods: {
-    home() {
-      console.log("home");
-    },
     async submitHandler() {
-      console.log("Do THat");
       const formData = {
         email: this.email,
         password: this.password,
         name: this.name
       };
       try {
-        console.log("Do THat1");
-
         await this.$store.dispatch("register", formData);
         this.$router.push("/");
         // eslint-disable-next-line no-empty
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     }
   }
 };

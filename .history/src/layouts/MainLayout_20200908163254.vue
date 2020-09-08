@@ -11,7 +11,7 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn icon @click.prevent="logout">
+      <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
 

@@ -28,6 +28,7 @@ export default {
     async logout({ commit }) {
       console.log("logout");
       await firebase.auth().signOut();
+      this.$router.push("/login?message=logout");
     }
   }
 };

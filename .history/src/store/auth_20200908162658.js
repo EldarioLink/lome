@@ -26,8 +26,8 @@ export default {
       }
     },
     async logout({ commit }) {
-      console.log("logout");
       await firebase.auth().signOut();
+      await commit("clearInfo");
     }
   }
 };
