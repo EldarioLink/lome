@@ -19,7 +19,6 @@
                     v-model.trim="email"
                     required
                     :rules="[rules.required, rules.email]"
-                    v-on:keyup="keyLogin($event)"
                   ></v-text-field>
 
                   <v-text-field
@@ -35,7 +34,6 @@
                       rules.passNumber,
                       rules.passLength
                     ]"
-                    v-on:keyup="keyLogin($event)"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -51,6 +49,7 @@
                 <v-btn
                   color="primary"
                   @click="submitHandler"
+                  :keyup.enter="submitHandler"
                   :disabled="!isValid"
                   >Login</v-btn
                 >
@@ -93,11 +92,6 @@ export default {
         // eslint-disable-next-line no-empty
       } catch (e) {
         console.log(e);
-      }
-    },
-    keyLogin(event) {
-      if (event.keyCode === 13 && this.isValid === true) {
-        this.submitHandler();
       }
     }
   }

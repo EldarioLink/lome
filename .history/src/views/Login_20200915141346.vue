@@ -19,7 +19,7 @@
                     v-model.trim="email"
                     required
                     :rules="[rules.required, rules.email]"
-                    v-on:keyup="keyLogin($event)"
+                    v-on:keyup="enterLogin($event)"
                   ></v-text-field>
 
                   <v-text-field

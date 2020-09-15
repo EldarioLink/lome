@@ -46,6 +46,9 @@ export default {
       if (title === "Выйти") {
         this.logout();
       }
+    },
+    test() {
+      console.log("clicked test");
     }
   },
   computed: {},
@@ -53,4 +56,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.dropdown_background {
+  cursor: pointer;
+  background: #cccccc;
+}
+</style>

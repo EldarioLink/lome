@@ -7,18 +7,36 @@
         <v-toolbar-title>Title</v-toolbar-title>
 
         <v-spacer></v-spacer>
-        <div class="text-center pr-7">
+        <!-- <div class="text-center pr-7">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" v-bind="attrs" v-on="on">
+                USER
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item v-for="(item, index) in items" :key="index">
+                <v-list-item-title
+                  class="dropdown_background"
+                  @click="clickHandler(item.title)"
+                  >{{ item.title }}</v-list-item-title
+                >
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div> -->
+        <div class="text-center">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                USER
+                Dropdown
               </v-btn>
             </template>
             <v-list>
               <v-list-item
                 v-for="(item, index) in items"
                 :key="index"
-                @click="clickHandler(item.title)"
+                @click="test"
               >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
@@ -46,6 +64,9 @@ export default {
       if (title === "Выйти") {
         this.logout();
       }
+    },
+    test() {
+      console.log("clicked test");
     }
   },
   computed: {},
@@ -53,4 +74,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.dropdown_background {
+  cursor: pointer;
+  background: #cccccc;
+}
+</style>

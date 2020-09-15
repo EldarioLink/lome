@@ -7,23 +7,24 @@
         <v-toolbar-title>Title</v-toolbar-title>
 
         <v-spacer></v-spacer>
-        <div class="text-center pr-7">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                USER
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(item, index) in items"
-                :key="index"
-                @click="clickHandler(item.title)"
-              >
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+        <div class="pr-7">
+          <div class="text-center">
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" v-bind="attrs" v-on="on">
+                  USER
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="(item, index) in items" :key="index">
+                  <v-list-item-title
+                    @click.prevent="clickHandler(item.title)"
+                    >{{ item.title }}</v-list-item-title
+                  >
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
         </div>
       </v-toolbar>
     </v-card>
@@ -43,14 +44,10 @@ export default {
       this.$router.push("/login");
     },
     clickHandler(title) {
-      if (title === "Выйти") {
-        this.logout();
-      }
+      console.log(title);
     }
   },
   computed: {},
   watch: {}
 };
 </script>
-
-<style></style>

@@ -46,6 +46,9 @@ export default {
       if (title === "Выйти") {
         this.logout();
       }
+    },
+    test() {
+      console.log("clicked test");
     }
   },
   computed: {},

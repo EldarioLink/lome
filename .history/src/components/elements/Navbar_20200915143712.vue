@@ -7,6 +7,7 @@
         <v-toolbar-title>Title</v-toolbar-title>
 
         <v-spacer></v-spacer>
+
         <div class="text-center pr-7">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -46,6 +47,9 @@ export default {
       if (title === "Выйти") {
         this.logout();
       }
+    },
+    test() {
+      console.log("clicked test");
     }
   },
   computed: {},
@@ -53,4 +57,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.dropdown_background {
+  cursor: pointer;
+  background: #cccccc;
+}
+</style>

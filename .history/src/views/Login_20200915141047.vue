@@ -19,7 +19,7 @@
                     v-model.trim="email"
                     required
                     :rules="[rules.required, rules.email]"
-                    v-on:keyup="keyLogin($event)"
+                    v-on:keyup="enterLogin($event)"
                   ></v-text-field>
 
                   <v-text-field
@@ -35,7 +35,7 @@
                       rules.passNumber,
                       rules.passLength
                     ]"
-                    v-on:keyup="keyLogin($event)"
+                    v-on:keyup="enterLogin($event)"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -95,9 +95,9 @@ export default {
         console.log(e);
       }
     },
-    keyLogin(event) {
+    enterLogin(event) {
       if (event.keyCode === 13 && this.isValid === true) {
-        this.submitHandler();
+        alert("Enter was pressed");
       }
     }
   }
