@@ -1,0 +1,66 @@
+import Vue from "vue";
+import App from "./App.vue";
+import VueRouter from "vue-router";
+import router from "./router";
+import store from "./store";
+import VuetifyToast from "vuetify-toast-snackbar";
+//import toastOptions from "./common/message.plugin.options";
+
+import firebase from "firebase/app";
+
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+import vuetify from "./plugins/vuetify";
+
+Vue.use(VueRouter);
+Vue.use(VuetifyToast, {
+  x: "right", // default
+  y: "bottom", // default
+  color: "info", // default
+  icon: "info",
+  iconColor: "", // default
+  classes: ["body-2"],
+  timeout: 3000, // default
+  dismissable: true, // default
+  multiLine: false, // default
+  vertical: false, // default
+  queueable: false, // default
+  showClose: false, // default
+  closeText: "", // default
+  closeIcon: "close", // default
+  closeColor: "", // default
+  slot: [], //default
+  shorts: {
+    custom: {
+      color: "purple"
+    }
+  },
+  property: "$toast" // default
+});
+
+Vue.config.productionTip = false;
+var firebaseConfig = {
+  apiKey: "AIzaSyApWNnaz35IxgPm7jItGTBmmhuXDdPxA9g",
+  authDomain: "lome-b0ead.firebaseapp.com",
+  databaseURL: "https://lome-b0ead.firebaseio.com",
+  projectId: "lome-b0ead",
+  storageBucket: "lome-b0ead.appspot.com",
+  messagingSenderId: "666332082702",
+  appId: "1:666332082702:web:35d0519f1b72a009f9425f"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+let app;
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      vuetify,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+});
