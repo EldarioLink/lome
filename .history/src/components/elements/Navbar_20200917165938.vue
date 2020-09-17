@@ -10,8 +10,11 @@
         <div class="text-center pr-7">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on">
-                <v-icon class="mdi-48px">mdi-account-circle</v-icon>
+              <!-- <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                USER
+              </v-btn> -->
+              <v-btn icon dark v-bind="attrs" v-on="on">
+                <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </template>
             <v-list>
