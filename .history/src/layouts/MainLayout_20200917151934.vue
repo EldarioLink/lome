@@ -1,9 +1,8 @@
 <template>
   <v-app>
-    <Loader v-if="loading" />
-    <div v-else>
-      <Navbar />
-    </div>
+    <Loader if="loading" />
+    <div></div>
+    <Navbar v-else />
   </v-app>
 </template>
 
@@ -13,7 +12,7 @@ import messages from "@/common/messages";
 
 export default {
   data: () => ({
-    loading: true
+    loading: false
   }),
   components: {
     Navbar
@@ -33,9 +32,6 @@ export default {
     error(fbError) {
       this.$error(messages[fbError.code] || "Что-то пошло не так");
     }
-  },
-  mounted() {
-    this.loading = false;
   }
 };
 </script>

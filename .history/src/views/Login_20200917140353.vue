@@ -65,6 +65,8 @@
 
 <script>
 export default {
+  import messages  from 'src/common/messages.js'
+
   data: () => ({
     email: "",
     password: "",
@@ -101,7 +103,11 @@ export default {
       }
     }
   },
-  mounted() {}
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
+    }
+  }
 };
 </script>
 

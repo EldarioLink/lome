@@ -36,6 +36,10 @@ export default {
   },
   mounted() {
     this.loading = false;
+    this.loading = false;
+    setTimeout(() => {
+      this.loading = false;
+    }, 4000);
   }
 };
 </script>

@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import messages from "src/common/messages.js";
+
 export default {
   data: () => ({
     email: "",
@@ -101,7 +103,11 @@ export default {
       }
     }
   },
-  mounted() {}
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
+    }
+  }
 };
 </script>
 

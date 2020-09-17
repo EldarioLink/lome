@@ -5,7 +5,7 @@
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
         <v-toolbar-title>Title</v-toolbar-title>
-        <v-icon>mdi-spin</v-icon>
+
         <v-spacer></v-spacer>
         <div class="text-center pr-7">
           <v-menu offset-y>
@@ -20,8 +20,6 @@
                 :key="index"
                 @click.prevent="clickHandler(item.title)"
               >
-                <v-icon class="pr-2">{{ item.icon }}</v-icon>
-
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -37,11 +35,7 @@ export default {
   name: "Navbar",
   data: () => ({
     loading: false,
-    items: [
-      { title: "Профиль", icon: "mdi-account-circle" },
-      { title: "Мой рейтинг", icon: "mdi-star" },
-      { title: "Выйти", icon: "mdi-exit-to-app" }
-    ]
+    items: [{ title: "1" }, { title: "2" }, { title: "3" }, { title: "Выйти" }]
   }),
   methods: {
     async logout(event) {
@@ -52,11 +46,12 @@ export default {
     async clickHandler(title) {
       if (title === "Выйти") {
         const res = await this.$dialog.confirm({
-          text: "Вы действительно хотите выйти?",
-          title: "Предупреждение",
-          persistent: false
+          text: "Do you really want to exit?",
+          title: "Warning"
+          //   persistent: false
         });
-        res ? this.logout() : null;
+        console.log(res);
+        // this.logout();
       }
     }
   },

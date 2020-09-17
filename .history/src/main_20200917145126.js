@@ -15,11 +15,9 @@ import messagePlugin from "@/common/message.plugin";
 import VuetifyDialog from "vuetify-dialog";
 import "vuetify-dialog/dist/vuetify-dialog.css";
 
-import Loader from "@/components/elements/Loader";
-
 Vue.use(VueRouter);
 Vue.use(messagePlugin);
-Vue.component("Loader", Loader);
+
 Vue.use(VuetifyDialog, {
   context: {
     vuetify

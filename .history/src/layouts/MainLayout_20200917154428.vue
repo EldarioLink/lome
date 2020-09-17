@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Loader v-if="loading" />
-    <div v-else>
+    <div>
       <Navbar />
     </div>
   </v-app>

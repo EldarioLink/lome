@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <Loader v-if="loading" />
-    <div v-else>
-      <Navbar />
-    </div>
+    <!-- <Loader v-if="loading" /> -->
+    <Navbar />
+    <Loader />
+    <div style="height:300px;width:200px"></div>
   </v-app>
 </template>
 

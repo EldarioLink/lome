@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import messages from "@/common/messages.js";
+
 export default {
   data: () => ({
     email: "",

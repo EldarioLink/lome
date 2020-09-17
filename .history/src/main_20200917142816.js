@@ -11,31 +11,13 @@ import "firebase/firestore";
 import vuetify from "./plugins/vuetify";
 
 import messagePlugin from "@/common/message.plugin";
-
-import VuetifyDialog from "vuetify-dialog";
-import "vuetify-dialog/dist/vuetify-dialog.css";
-
-import Loader from "@/components/elements/Loader";
+import vuetify from '@/plugins/vuetify'
+ 
+import VuetifyDialog from 'vuetify-dialog'
+import 'vuetify-dialog/dist/vuetify-dialog.css'
 
 Vue.use(VueRouter);
 Vue.use(messagePlugin);
-Vue.component("Loader", Loader);
-Vue.use(VuetifyDialog, {
-  context: {
-    vuetify
-  },
-  confirm: {
-    actions: {
-      false: "Нет",
-      true: {
-        text: "Да",
-        color: "primary"
-      }
-    },
-    icon: false, // to disable icon just put false
-    width: 500
-  }
-});
 
 Vue.config.productionTip = false;
 var firebaseConfig = {

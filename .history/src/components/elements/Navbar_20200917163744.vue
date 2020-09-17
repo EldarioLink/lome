@@ -20,7 +20,7 @@
                 :key="index"
                 @click.prevent="clickHandler(item.title)"
               >
-                <v-icon class="pr-2">{{ item.icon }}</v-icon>
+                <v-icon>{{ item.icon }}</v-icon>
 
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>

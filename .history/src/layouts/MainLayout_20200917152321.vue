@@ -1,9 +1,7 @@
 <template>
   <v-app>
     <Loader v-if="loading" />
-    <div v-else>
-      <Navbar />
-    </div>
+    <Navbar v-else />
   </v-app>
 </template>
 
@@ -13,7 +11,7 @@ import messages from "@/common/messages";
 
 export default {
   data: () => ({
-    loading: true
+    loading: false
   }),
   components: {
     Navbar
