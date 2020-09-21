@@ -1,19 +1,29 @@
 <template>
   <v-app>
-    <router-view />
+    <Loader v-if="loading" />
+    <div v-else>
+      <Navbar />
+    </div>
   </v-app>
 </template>
 
 <script>
+import Navbar from "@/components/elements/Navbar.vue";
 import messages from "@/common/messages";
 
 export default {
-  props: {
-    source: String
-  },
   data: () => ({
-    drawer: null
+    loading: true
   }),
+  components: {
+    Navbar
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch("logout");
+      this.$router.push("/login");
+    }
+  },
   computed: {
     error() {
       return this.$store.getters.error;
@@ -23,8 +33,9 @@ export default {
     error(fbError) {
       this.$error(messages[fbError.code] || "Что-то пошло не так");
     }
+  },
+  mounted() {
+    this.loading = false;
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

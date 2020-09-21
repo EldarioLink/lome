@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import messages from "@/common/messages";
+//import messages from "@/common/messages";
 
 export default {
   data: () => ({
@@ -107,8 +107,11 @@ export default {
   },
   mounted() {
     if (messages[this.$route.query.message]) {
+      console.log("beforeMessage");
       this.$message(messages[this.$route.query.message]);
+      console.log("afterMessage");
     }
+    console.log("hihi");
   },
   computed: {}
 };

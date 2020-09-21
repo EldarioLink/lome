@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import messages from "@/common/messages";
+// import messages from "@/common/messages";
 
 export default {
   props: {
@@ -20,11 +20,15 @@ export default {
     }
   },
   watch: {
-    error(fbError) {
-      this.$error(messages[fbError.code] || "Что-то пошло не так");
-    }
+    // error(fbError) {
+    //   this.$error(messages[fbError.code] || "Что-то пошло не так");
+    // }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.custom-class {
+  background: green;
+}
+</style>

@@ -91,7 +91,7 @@ export default {
       };
       try {
         await this.$store.dispatch("login", formData);
-        // console.log("beforePush");
+        console.log("beforePush");
 
         this.$router.push("/");
         // eslint-disable-next-line no-empty
@@ -106,9 +106,11 @@ export default {
     }
   },
   mounted() {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message]);
-    }
+    // if (messages[this.$route.query.message]) {
+    //   console.log("beforeMessage");
+    //   this.$message(messages[this.$route.query.message]);
+    //   console.log("afterMessage");
+    // }
   },
   computed: {}
 };

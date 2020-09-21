@@ -106,9 +106,12 @@ export default {
     }
   },
   mounted() {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message]);
-    }
+    // if (messages[this.$route.query.message]) {
+    //   console.log("beforeMessage");
+    //   this.$message(messages[this.$route.query.message]);
+    //   console.log("afterMessage");
+    // }
+    console.log("hihi");
   },
   computed: {}
 };

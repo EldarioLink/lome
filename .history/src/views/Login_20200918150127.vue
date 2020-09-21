@@ -65,6 +65,7 @@
 
 <script>
 import messages from "@/common/messages";
+import { mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -91,8 +92,6 @@ export default {
       };
       try {
         await this.$store.dispatch("login", formData);
-        // console.log("beforePush");
-
         this.$router.push("/");
         // eslint-disable-next-line no-empty
       } catch (e) {
@@ -109,8 +108,7 @@ export default {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message]);
     }
-  },
-  computed: {}
+  }
 };
 </script>
 

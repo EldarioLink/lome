@@ -10,7 +10,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import vuetify from "./plugins/vuetify";
 
-import messagePlugin from "@/common/message.plugin";
+// import messagePlugin from "@/common/message.plugin";
 
 import VuetifyDialog from "vuetify-dialog";
 import "vuetify-dialog/dist/vuetify-dialog.css";
@@ -18,7 +18,7 @@ import "vuetify-dialog/dist/vuetify-dialog.css";
 import Loader from "@/components/elements/Loader";
 
 Vue.use(VueRouter);
-Vue.use(messagePlugin);
+// Vue.use(messagePlugin);
 Vue.component("Loader", Loader);
 Vue.use(VuetifyDialog, {
   context: {
@@ -54,7 +54,7 @@ firebase.initializeApp(firebaseConfig);
 let app;
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
-    app = new Vue({
+    new Vue({
       router,
       store,
       vuetify,

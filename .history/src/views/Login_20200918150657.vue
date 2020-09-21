@@ -65,6 +65,7 @@
 
 <script>
 import messages from "@/common/messages";
+import { mapMutations } from "vuex";
 
 export default {
   data: () => ({
@@ -84,6 +85,10 @@ export default {
     }
   }),
   methods: {
+      ...mapMutations([
+      "doneTodosCount"
+      // ...
+    ])
     async submitHandler() {
       const formData = {
         email: this.email,
@@ -91,8 +96,6 @@ export default {
       };
       try {
         await this.$store.dispatch("login", formData);
-        // console.log("beforePush");
-
         this.$router.push("/");
         // eslint-disable-next-line no-empty
       } catch (e) {

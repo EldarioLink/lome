@@ -65,6 +65,7 @@
 
 <script>
 import messages from "@/common/messages";
+import { mapMutations } from "vuex";
 
 export default {
   data: () => ({
@@ -84,6 +85,7 @@ export default {
     }
   }),
   methods: {
+    ...mapMutations(["clearError"]),
     async submitHandler() {
       const formData = {
         email: this.email,
@@ -91,8 +93,6 @@ export default {
       };
       try {
         await this.$store.dispatch("login", formData);
-        // console.log("beforePush");
-
         this.$router.push("/");
         // eslint-disable-next-line no-empty
       } catch (e) {
@@ -106,9 +106,12 @@ export default {
     }
   },
   mounted() {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message]);
-    }
+    this.$nextTick(function() {
+      if (messages[this.$route.query.message]) {
+        console.log(this.$route.query.message);
+        this.$message(messages[this.$route.query.message]);
+      }
+    });
   },
   computed: {}
 };

@@ -1,5 +1,5 @@
 export default {
-  install(Vue) {
+ // install(Vue) {
     Vue.prototype.$message = function(html) {
       // eslint-disable-next-line no-undef
       this.$toast(html, {});
@@ -8,5 +8,5 @@ export default {
       // eslint-disable-next-line no-undef
       this.$toast(`[Error]: ${html}`, {});
     };
-  }
+ // }
 };

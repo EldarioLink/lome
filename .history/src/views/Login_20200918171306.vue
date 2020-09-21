@@ -103,12 +103,18 @@ export default {
       if (event.keyCode === 13 && this.isValid === true) {
         this.submitHandler();
       }
+    },
+    test(){
+      this.#toast("hy")
     }
   },
   mounted() {
     if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message]);
+      console.log("beforeMessage");
+      this.$toast(messages[this.$route.query.message]);
+      console.log("afterMessage");
     }
+    console.log("hihi");
   },
   computed: {}
 };
