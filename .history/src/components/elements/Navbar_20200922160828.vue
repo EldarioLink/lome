@@ -2,7 +2,7 @@
   <!-- <v-app-bar app clipped-left>
     <v-card >
       <v-toolbar color="green lighten-3"> -->
-  <v-app-bar color="green lighten-4" app clipped-left>
+  <v-app-bar color="green lighten-4" flat tile app clipped-left>
     <v-app-bar-nav-icon @click.prevent="$emit('drawer')"></v-app-bar-nav-icon>
 
     <v-toolbar-title>Title</v-toolbar-title>

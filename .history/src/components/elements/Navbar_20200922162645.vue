@@ -2,10 +2,12 @@
   <!-- <v-app-bar app clipped-left>
     <v-card >
       <v-toolbar color="green lighten-3"> -->
-  <v-app-bar color="green lighten-4" app clipped-left>
+  <v-app-bar color="blue darken-3" id="inspire" app clipped-left>
     <v-app-bar-nav-icon @click.prevent="$emit('drawer')"></v-app-bar-nav-icon>
 
-    <v-toolbar-title>Title</v-toolbar-title>
+    <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+      <span class="hidden-sm-and-down">Google Contacts</span>
+    </v-toolbar-title>
     <v-icon>mdi-spin</v-icon>
     <v-spacer></v-spacer>
     <div class="text-center pr-7">

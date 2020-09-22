@@ -51,7 +51,10 @@ export default {
     }
   },
   mounted() {
-    this.loading = false;
+    setInterval(() => {
+      this.loading = false;
+    }, 10000);
+    // this.loading = false;
   }
 };
 </script>

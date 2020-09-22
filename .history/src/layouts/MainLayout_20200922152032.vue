@@ -2,20 +2,10 @@
   <v-app>
     <Loader v-if="loading" />
     <div v-else>
-      <Navbar @drawer="isOpen = !isOpen" />
-
+      <Navbar :broke="this.not" @drawer="isOpen = !isOpen" />
       <Sidebar :value="isOpen" />
-
-      <v-main>
-        <v-container fluid>
-          Content
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      ава
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 
@@ -28,7 +18,8 @@ import messages from "@/common/messages";
 export default {
   data: () => ({
     loading: true,
-    isOpen: false
+    isOpen: false,
+    not: false
   }),
   components: {
     Navbar,

@@ -3,19 +3,8 @@
     <Loader v-if="loading" />
     <div v-else>
       <Navbar @drawer="isOpen = !isOpen" />
-
-      <Sidebar :value="isOpen" />
-
-      <v-main>
-        <v-container fluid>
-          Content
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      <Sidebar :value="changeToggle()" />
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 
@@ -43,6 +32,9 @@ export default {
   computed: {
     error() {
       return this.$store.getters.error;
+    }m
+    changeToggle(){
+      return this.isOpen
     }
   },
   watch: {

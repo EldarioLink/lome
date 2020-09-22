@@ -3,19 +3,8 @@
     <Loader v-if="loading" />
     <div v-else>
       <Navbar @drawer="isOpen = !isOpen" />
-
-      <Sidebar :value="isOpen" />
-
-      <v-main>
-        <v-container fluid>
-          Content
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      <Sidebar :value="isOpen" @drawerclose="closeSidebar()" />
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 
@@ -38,6 +27,10 @@ export default {
     async logout() {
       await this.$store.dispatch("logout");
       this.$router.push("/login");
+    },
+    closeSidebar() {
+      console.log("test");
+      this.isOpen = false;
     }
   },
   computed: {

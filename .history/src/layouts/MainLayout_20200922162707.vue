@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="inspire">
     <Loader v-if="loading" />
     <div v-else>
       <Navbar @drawer="isOpen = !isOpen" />
@@ -8,7 +8,7 @@
 
       <v-main>
         <v-container fluid>
-          Content
+          fffff
           <router-view></router-view>
         </v-container>
       </v-main>

@@ -8,13 +8,13 @@
 
       <v-main>
         <v-container fluid>
-          Content
+          fffff
           <router-view></router-view>
         </v-container>
       </v-main>
     </div>
     <v-footer app>
-      FOOTER
+      <!-- -->
     </v-footer>
   </v-app>
 </template>

@@ -3,19 +3,16 @@
     <Loader v-if="loading" />
     <div v-else>
       <Navbar @drawer="isOpen = !isOpen" />
-
       <Sidebar :value="isOpen" />
 
-      <v-main>
-        <v-container fluid>
-          Content
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      <v-app-bar
+        :clipped-left="$vuetify.breakpoint.lgAndUp"
+        app
+        color="blue darken-3"
+        dark
+      >
+      </v-app-bar>
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 

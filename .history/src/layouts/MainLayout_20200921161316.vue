@@ -2,20 +2,9 @@
   <v-app>
     <Loader v-if="loading" />
     <div v-else>
-      <Navbar @drawer="isOpen = !isOpen" />
-
-      <Sidebar :value="isOpen" />
-
-      <v-main>
-        <v-container fluid>
-          Content
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      <Navbar @click="isOpen = !isOpen" />
+      <Sidebar v-if="isOpen" />
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 

@@ -7,15 +7,13 @@
       <Sidebar :value="isOpen" />
 
       <v-main>
+        <!-- Provides the application the proper gutter -->
         <v-container fluid>
-          Content
+          fffff
           <router-view></router-view>
         </v-container>
       </v-main>
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 

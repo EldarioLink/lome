@@ -2,37 +2,22 @@
   <v-app>
     <Loader v-if="loading" />
     <div v-else>
-      <Navbar @drawer="isOpen = !isOpen" />
-
-      <Sidebar :value="isOpen" />
-
-      <v-main>
-        <v-container fluid>
-          Content
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      <Navbar @click="isOpen = !isOpen" />
+      <Sidebar />
     </div>
-    <v-footer app>
-      FOOTER
-    </v-footer>
   </v-app>
 </template>
 
 <script>
 import Navbar from "@/components/elements/Navbar.vue";
-import Sidebar from "@/components/elements/Sidebar.vue";
-
 import messages from "@/common/messages";
 
 export default {
   data: () => ({
-    loading: true,
-    isOpen: false
+    loading: true
   }),
   components: {
-    Navbar,
-    Sidebar
+    Navbar
   },
   methods: {
     async logout() {

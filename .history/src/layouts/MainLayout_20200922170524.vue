@@ -51,6 +51,9 @@ export default {
     }
   },
   mounted() {
+    setInterval(() => {
+      this.loading = false;
+    });
     this.loading = false;
   }
 };
