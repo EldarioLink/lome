@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-container v-if="this.getMovie"> Not Search</v-container>
-    <v-container v-else>
+    <Loader v-if="loading" />
+    <v-container>
       <v-card
         v-for="movie in this.getMovie.data.titles"
         :key="movie.id"
@@ -60,13 +60,13 @@ export default {
     loading: true
   }),
   methods: {
-    ...mapActions(["searchMovie"])
+    ...mapActions(["getMovie"])
   },
   computed: {
     ...mapGetters(["getMovie"])
   },
   mounted() {
-    console.log("mountedHOME");
+    this.data = this.getMovie;
   }
 };
 </script>

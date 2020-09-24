@@ -9,7 +9,6 @@
     <v-icon>mdi-spin</v-icon>
     <v-spacer></v-spacer>
     <v-text-field
-      v-model="movieName"
       flat
       solo
       background-color="blue-grey lighten-4"
@@ -20,7 +19,7 @@
       class="hidden-sm-and-down"
     ></v-text-field>
     <div class="pa-2">
-      <v-btn @click="search(movieName)" dark block>Поиск</v-btn>
+      <v-btn @click="search" dark block>Поиск</v-btn>
     </div>
   </v-app-bar>
   <!-- </v-toolbar>
@@ -28,20 +27,16 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   name: "Navbar",
   data: () => ({
     loading: false,
-    data: null,
-    movieName: null
+    items: []
   }),
   methods: {
-    ...mapActions(["searchMovie"]),
-    search(movieName) {
-      this.data = this.searchMovie(movieName);
-      console.log(this.data);
+        ...mapActions(["getMovie"])
+    search() {
+      console.log("search");
     }
   },
   computed: {},

@@ -40,7 +40,7 @@ export default {
   methods: {
     ...mapActions(["searchMovie"]),
     search(movieName) {
-      this.data = this.searchMovie(movieName);
+      this.data = this.getMovie(movieName);
       console.log(this.data);
     }
   },

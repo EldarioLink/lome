@@ -9,8 +9,8 @@ export default {
     loading: false
   },
   mutations: {
-    setMovie(state, data) {
-      state.movieData = data;
+    setMovie(state, info) {
+      state.movieData = info;
     },
     clearMovie(state) {
       state.movieData = {};
@@ -34,7 +34,7 @@ export default {
         )
         .then(response => {
           console.log(response);
-          this.commit("setMovie", response);
+          this.commit("setMovie", response
         })
         .catch(err => {
           console.log(err);

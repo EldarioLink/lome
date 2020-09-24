@@ -9,8 +9,8 @@ export default {
     loading: false
   },
   mutations: {
-    setMovie(state, data) {
-      state.movieData = data;
+    setMovie(state, info) {
+      state.movieData = info;
     },
     clearMovie(state) {
       state.movieData = {};

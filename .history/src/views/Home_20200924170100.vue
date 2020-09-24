@@ -1,7 +1,6 @@
 <template>
   <div>
-    <v-container v-if="this.getMovie"> Not Search</v-container>
-    <v-container v-else>
+    <v-container>
       <v-card
         v-for="movie in this.getMovie.data.titles"
         :key="movie.id"

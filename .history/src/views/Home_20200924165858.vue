@@ -65,8 +65,6 @@ export default {
   computed: {
     ...mapGetters(["getMovie"])
   },
-  mounted() {
-    console.log("mountedHOME");
-  }
+  mounted() {}
 };
 </script>

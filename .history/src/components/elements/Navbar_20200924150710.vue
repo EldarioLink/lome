@@ -9,7 +9,6 @@
     <v-icon>mdi-spin</v-icon>
     <v-spacer></v-spacer>
     <v-text-field
-      v-model="movieName"
       flat
       solo
       background-color="blue-grey lighten-4"
@@ -34,14 +33,14 @@ export default {
   name: "Navbar",
   data: () => ({
     loading: false,
-    data: null,
-    movieName: null
+    items: [],
+    data
   }),
   methods: {
-    ...mapActions(["searchMovie"]),
+    ...mapActions(["getMovie"]),
     search(movieName) {
-      this.data = this.searchMovie(movieName);
-      console.log(this.data);
+      this.data = this.getMovie(movieName);
+      console.log();
     }
   },
   computed: {},

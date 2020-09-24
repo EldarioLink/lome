@@ -9,15 +9,15 @@ export default {
     loading: false
   },
   mutations: {
-    setMovie(state, data) {
-      state.movieData = data;
+    setMovie(state, info) {
+      state.movieData = info;
     },
     clearMovie(state) {
       state.movieData = {};
     }
   },
   actions: {
-    searchMovie({ dispatch, commit }, movieName) {
+    getMovie({ dispatch, commit }, movieName) {
       console.log(movieName);
       Vue.axios
         .get(
@@ -33,8 +33,7 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
-          this.commit("setMovie", response);
+          store.commit("setMovie", response);
         })
         .catch(err => {
           console.log(err);

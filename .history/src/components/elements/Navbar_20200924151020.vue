@@ -38,9 +38,9 @@ export default {
     movieName: null
   }),
   methods: {
-    ...mapActions(["searchMovie"]),
+    ...mapActions(["getMovie"]),
     search(movieName) {
-      this.data = this.searchMovie(movieName);
+      this.data = this.getMovie(movieName);
       console.log(this.data);
     }
   },

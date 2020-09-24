@@ -1,0 +1,69 @@
+<template>
+  <div>
+    <v-card
+      v-for="movie in this.getMovie.data.titles"
+      :key="movie.data.titles.id"
+      max-width="344"
+      class="mx-auto"
+    >
+      <v-list-item>
+        <v-list-item-avatar color="grey"></v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title class="headline">{{
+            movie.data.titles
+          }}</v-list-item-title>
+          <v-list-item-subtitle>by {{ movie.data.names }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-img :src="movie.data.image" height="194"></v-img>
+
+      <v-card-text>
+        Visit ten places on our planet that are undergoing the biggest changes
+        today.
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn text color="deep-purple accent-4">
+          Read
+        </v-btn>
+        <v-btn text color="deep-purple accent-4">
+          Bookmark
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>mdi-share-variant</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+    <div class="text-center">
+      <v-pagination
+        color="primary"
+        v-model="page"
+        @input="next(page)"
+        :length="6"
+      ></v-pagination>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapGetters } from "vuex";
+export default {
+  data: () => ({
+    page: 1,
+    data: null,
+    loading: true
+  }),
+  methods: {
+    ...mapActions(["getMovie"])
+  },
+  computed: {
+    ...mapGetters(["getMovie"])
+  },
+  mounted() {}
+};
+</script>

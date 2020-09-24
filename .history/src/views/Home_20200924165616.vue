@@ -66,7 +66,7 @@ export default {
     ...mapGetters(["getMovie"])
   },
   mounted() {
-    console.log("mountedHOME");
+    this.data = this.getMovie;
   }
 };
 </script>

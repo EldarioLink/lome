@@ -5,19 +5,18 @@ import Vue from "vue";
 
 export default {
   state: {
-    movieData: {},
-    loading: false
+    movieData: {}
   },
   mutations: {
-    setMovie(state, data) {
-      state.movieData = data;
+    setInfo(state, info) {
+      state.info = info;
     },
-    clearMovie(state) {
-      state.movieData = {};
+    clearInfo(state) {
+      state.info = {};
     }
   },
   actions: {
-    searchMovie({ dispatch, commit }, movieName) {
+    getMovie({ dispatch, commit }, movieName) {
       console.log(movieName);
       Vue.axios
         .get(
@@ -33,8 +32,7 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
-          this.commit("setMovie", response);
+          return response;
         })
         .catch(err => {
           console.log(err);
@@ -44,6 +42,6 @@ export default {
     }
   },
   getters: {
-    getMovie: s => s.movieData
+    info: s => s.movieData
   }
 };

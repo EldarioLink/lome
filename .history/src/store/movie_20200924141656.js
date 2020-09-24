@@ -1,25 +1,23 @@
 /* eslint-disable no-useless-catch */
 /* eslint-disable no-unused-vars */
 import firebase from "firebase/app";
-import Vue from "vue";
 
 export default {
   state: {
-    movieData: {},
-    loading: false
+    movieData: {}
   },
   mutations: {
-    setMovie(state, data) {
-      state.movieData = data;
+    setInfo(state, info) {
+      state.info = info;
     },
-    clearMovie(state) {
-      state.movieData = {};
+    clearInfo(state) {
+      state.info = {};
     }
   },
   actions: {
-    searchMovie({ dispatch, commit }, movieName) {
+    getMovie({ dispatch, commit }, { movieName }) {
       console.log(movieName);
-      Vue.axios
+      this.axios
         .get(
           `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
           {
@@ -33,17 +31,16 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
-          this.commit("setMovie", response);
+          this.data = response;
+          console.log(this.data);
         })
         .catch(err => {
           console.log(err);
           commit("setError", err);
-          throw err;
         });
     }
   },
   getters: {
-    getMovie: s => s.movieData
+    info: s => s.info
   }
 };
