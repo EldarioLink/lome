@@ -21,10 +21,10 @@
             </v-list-item>
             <v-card-actions>
               <v-btn text color="deep-purple accent-4">
-                Подробнее
+                Read
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="like = !like">
+              <v-btn icon @click="this.like = !this.like">
                 <v-icon>{{ liker }}</v-icon>
               </v-btn>
             </v-card-actions>

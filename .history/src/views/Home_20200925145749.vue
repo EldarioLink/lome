@@ -11,21 +11,35 @@
         >
           <v-spacer></v-spacer>
           <v-card>
-            <v-img :src="movie.image" height="194"></v-img>
             <v-list-item>
+              <v-list-item-avatar color="grey"></v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title class="headline">{{
                   movie.title
                 }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+
+            <v-img :src="movie.image" height="194"></v-img>
+
+            <v-card-text>
+              Visit ten places on our planet that are undergoing the biggest
+              changes today.
+            </v-card-text>
+
             <v-card-actions>
               <v-btn text color="deep-purple accent-4">
-                Подробнее
+                Read
+              </v-btn>
+              <v-btn text color="deep-purple accent-4">
+                Bookmark
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="like = !like">
-                <v-icon>{{ liker }}</v-icon>
+              <v-btn icon>
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+              <v-btn icon>
+                <v-icon>mdi-share-variant</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -48,10 +62,11 @@ export default {
   data: () => ({
     page: 1,
     loading: true,
-    perPage: 4,
-    like: false
+    perPage: 4
   }),
-  methods: {},
+  methods: {
+    // ...mapActions(["searchMovie"])
+  },
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
@@ -59,9 +74,6 @@ export default {
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
-    },
-    liker() {
-      return this.like ? "mdi-heart" : "mdi-heart-outline";
     }
   },
   mounted() {}

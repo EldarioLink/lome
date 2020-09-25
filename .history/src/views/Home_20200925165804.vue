@@ -3,14 +3,14 @@
     <div v-if="!this.moviesInfo">Not Search</div>
     <div v-else>
       <v-layout>
-        <v-flex
-          v-for="movie in this.visiblePages"
-          :key="movie.id"
-          max-width="344"
-          class="md2 pr-2"
-        >
+        <v-flex>
           <v-spacer></v-spacer>
-          <v-card>
+          <v-card
+            v-for="movie in this.visiblePages"
+            :key="movie.id"
+            max-width="344"
+            class="md2 pr-2"
+          >
             <v-img :src="movie.image" height="194"></v-img>
             <v-list-item>
               <v-list-item-content>
@@ -21,7 +21,7 @@
             </v-list-item>
             <v-card-actions>
               <v-btn text color="deep-purple accent-4">
-                Подробнее
+                Read
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn icon @click="like = !like">

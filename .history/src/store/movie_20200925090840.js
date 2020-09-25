@@ -34,7 +34,7 @@ export default {
         )
         .then(response => {
           console.log(response);
-          this.commit("setMovie", response.data);
+          this.commit("setMovie", response);
           console.log("from", this.getMovie);
         })
         .catch(err => {

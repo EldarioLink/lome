@@ -21,11 +21,11 @@
             </v-list-item>
             <v-card-actions>
               <v-btn text color="deep-purple accent-4">
-                Подробнее
+                Read
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="like = !like">
-                <v-icon>{{ liker }}</v-icon>
+              <v-btn icon>
+                <v-icon>{{ mdi - heart }}</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -48,10 +48,11 @@ export default {
   data: () => ({
     page: 1,
     loading: true,
-    perPage: 4,
-    like: false
+    perPage: 4
   }),
-  methods: {},
+  methods: {
+    // ...mapActions(["searchMovie"])
+  },
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
@@ -59,9 +60,6 @@ export default {
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
-    },
-    liker() {
-      return this.like ? "mdi-heart" : "mdi-heart-outline";
     }
   },
   mounted() {}

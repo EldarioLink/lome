@@ -9,7 +9,7 @@
           max-width="344"
           class="md2 pr-2"
         >
-          <v-spacer></v-spacer>
+          <v-spacer>{{ movie.id }}</v-spacer>
           <v-card>
             <v-img :src="movie.image" height="194"></v-img>
             <v-list-item>
@@ -21,7 +21,7 @@
             </v-list-item>
             <v-card-actions>
               <v-btn text color="deep-purple accent-4">
-                Подробнее
+                Read
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn icon @click="like = !like">

@@ -5,7 +5,7 @@ import Vue from "vue";
 
 export default {
   state: {
-    movieData: null,
+    movieData: {},
     loading: false
   },
   mutations: {
@@ -34,8 +34,7 @@ export default {
         )
         .then(response => {
           console.log(response);
-          this.commit("setMovie", response.data);
-          console.log("from", this.getMovie);
+          this.commit("setMovie", response);
         })
         .catch(err => {
           console.log(err);
