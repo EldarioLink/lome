@@ -2,12 +2,12 @@
   <div>
     <div v-if="!this.moviesInfo">Not Search</div>
     <div v-else>
-      <v-layout class="d-flex  flex-wrap justify-center mb-6">
+      <v-layout>
         <v-flex
-          v-for="movie in visiblePages"
+          v-for="movie in films"
           :key="movie.id"
           max-width="344"
-          class="md2 pr-2 pt-2 "
+          class="md2 pr-2"
         >
           <v-spacer></v-spacer>
           <v-card>
@@ -36,14 +36,8 @@
         <v-pagination
           color="primary"
           v-model="page"
-          :length="Math.ceil(films.length / perPage)"
-        ></v-pagination>
-        <!-- 
-            <v-pagination
-          color="primary"
-          v-model="page"
           :length="Math.ceil(this.moviesInfo.titles.length / perPage)"
-        ></v-pagination> -->
+        ></v-pagination>
       </div>
     </div>
   </div>
@@ -55,104 +49,104 @@ export default {
   data: () => ({
     page: 1,
     loading: true,
-    perPage: 8,
+    perPage: 4,
     like: false,
     films: [
       {
-        id: "tt04110048",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost"
       },
       {
-        id: "tt04110308",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost1"
       },
       {
-        id: "tt04115008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost2"
       },
       {
-        id: "tt04110608",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost3"
       },
       {
-        id: "tt04110708",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost4"
       },
       {
-        id: "tt04181008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost5"
       },
       {
-        id: "tt04191008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost6"
       },
       {
-        id: "tt04101008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost7"
       },
       {
-        id: "tt041100008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost8"
       },
       {
-        id: "tt041188008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost9"
       },
       {
-        id: "tt041771008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Lost10"
       },
       {
-        id: "66666",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
         title: "Los1t1"
       },
       {
-        id: "tt041551008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
-        title: "Lost12"
+        title: "Lost"
       },
       {
-        id: "444",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
-        title: "Lost13"
+        title: "Lost"
       },
       {
-        id: "tt043110038",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
-        title: "Lost14"
+        title: "Lost"
       },
       {
-        id: "tt041175008",
+        id: "tt0411008",
         image:
           "https://m.media-amazon.com/images/M/MV5BNzhlY2E5NDUtYjJjYy00ODg3LWFkZWQtYTVmMzU4ZWZmOWJkXkEyXkFqcGdeQXVyNTA4NzY1MzY@.jpg",
-        title: "Lost15"
+        title: "Lost"
       }
     ]
   }),
@@ -160,7 +154,7 @@ export default {
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      return this.films.slice(
+      return this.moviesInfo.titles.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );

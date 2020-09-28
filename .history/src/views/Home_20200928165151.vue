@@ -2,7 +2,7 @@
   <div>
     <div v-if="!this.moviesInfo">Not Search</div>
     <div v-else>
-      <v-layout class="d-flex  flex-wrap justify-center mb-6">
+      <v-layout class="d-flex flex-wrap justify-space-around mb-6">
         <v-flex
           v-for="movie in visiblePages"
           :key="movie.id"

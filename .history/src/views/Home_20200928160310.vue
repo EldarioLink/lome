@@ -2,12 +2,12 @@
   <div>
     <div v-if="!this.moviesInfo">Not Search</div>
     <div v-else>
-      <v-layout class="d-flex  flex-wrap justify-center mb-6">
+      <v-layout>
         <v-flex
-          v-for="movie in visiblePages"
+          v-for="movie in films"
           :key="movie.id"
           max-width="344"
-          class="md2 pr-2 pt-2 "
+          class="md2 pr-2"
         >
           <v-spacer></v-spacer>
           <v-card>
@@ -36,14 +36,8 @@
         <v-pagination
           color="primary"
           v-model="page"
-          :length="Math.ceil(films.length / perPage)"
-        ></v-pagination>
-        <!-- 
-            <v-pagination
-          color="primary"
-          v-model="page"
           :length="Math.ceil(this.moviesInfo.titles.length / perPage)"
-        ></v-pagination> -->
+        ></v-pagination>
       </div>
     </div>
   </div>
@@ -55,7 +49,7 @@ export default {
   data: () => ({
     page: 1,
     loading: true,
-    perPage: 8,
+    perPage: 4,
     like: false,
     films: [
       {
@@ -160,7 +154,7 @@ export default {
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      return this.films.slice(
+      return this.moviesInfo.titles.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );

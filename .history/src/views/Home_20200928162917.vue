@@ -2,15 +2,15 @@
   <div>
     <div v-if="!this.moviesInfo">Not Search</div>
     <div v-else>
-      <v-layout class="d-flex  flex-wrap justify-center mb-6">
+      <v-layout>
         <v-flex
           v-for="movie in visiblePages"
           :key="movie.id"
           max-width="344"
-          class="md2 pr-2 pt-2 "
+          class="md2 pr-2"
         >
           <v-spacer></v-spacer>
-          <v-card>
+          <v-card class="d-inline-flex pa-2">
             <v-img :src="movie.image" height="194"></v-img>
             <v-list-item>
               <v-list-item-content>
@@ -55,7 +55,7 @@ export default {
   data: () => ({
     page: 1,
     loading: true,
-    perPage: 8,
+    perPage: 4,
     like: false,
     films: [
       {
