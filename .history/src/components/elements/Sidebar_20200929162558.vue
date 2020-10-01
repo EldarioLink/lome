@@ -32,7 +32,7 @@ export default {
     return {
       items: [
         { title: "Профиль", icon: "mdi-account-circle" },
-        { title: "Мои фильмы", icon: "mdi-star" },
+        { title: "Мой фильмы", icon: "mdi-star" },
         { title: "Выйти", icon: "mdi-exit-to-app" }
       ]
     };

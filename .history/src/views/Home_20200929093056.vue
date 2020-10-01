@@ -24,10 +24,8 @@
                 Подробнее
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="movie.like = !movie.like">
-                <v-icon>{{
-                  movie.like ? "mdi-heart" : "mdi-heart-outline"
-                }}</v-icon>
+              <v-btn icon @click="this.like = !this.like">
+                <v-icon>{{ liker }}</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -38,8 +36,14 @@
         <v-pagination
           color="primary"
           v-model="page"
-          :length="Math.ceil(this.moviesInfo.titles.length / perPage)"
+          :length="Math.ceil(films.length / perPage)"
         ></v-pagination>
+        <!-- 
+            <v-pagination
+          color="primary"
+          v-model="page"
+          :length="Math.ceil(this.moviesInfo.titles.length / perPage)"
+        ></v-pagination> -->
       </div>
     </div>
   </div>
@@ -172,7 +176,7 @@ export default {
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      return this.moviesInfo.titles.slice(
+      return this.films.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );

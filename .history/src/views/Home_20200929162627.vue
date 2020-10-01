@@ -7,7 +7,7 @@
           v-for="movie in visiblePages"
           :key="movie.id"
           max-width="344"
-          class="md2 pr-2 pt-2 "
+          class="md4 pr-2 pt-2 "
         >
           <v-spacer></v-spacer>
           <v-card>

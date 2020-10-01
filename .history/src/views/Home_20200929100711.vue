@@ -172,7 +172,7 @@ export default {
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      return this.moviesInfo.titles.slice(
+      return moviesInfo.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
