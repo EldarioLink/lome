@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!this.moviesInfo">
-      <!-- <Loader /> -->
+      <Loader />
     </div>
     <div v-else>
       <v-layout class="d-flex  flex-wrap justify-center mb-6">

@@ -18,10 +18,10 @@ const routes = [
     component: () => import("@/views/Myfilms.vue")
   },
   {
-    path: "/profile",
-    name: "profile",
+    path: "/myfilms",
+    name: "myfilms",
     meta: { layout: "main" },
-    component: () => import("@/views/Profile.vue")
+    component: () => import("@/views/Myfilms.vue")
   },
   {
     path: "/login",

@@ -5,10 +5,10 @@
   <v-app-bar color="green lighten-4" app clipped-left>
     <v-app-bar-nav-icon @click.prevent="$emit('drawer')"></v-app-bar-nav-icon>
 
-    <v-toolbar-title>LovedMovie</v-toolbar-title>
+    <v-toolbar-title>Title</v-toolbar-title>
     <v-icon>mdi-spin</v-icon>
     <v-spacer></v-spacer>
-    <v-layout v-show="this.showInputFields">
+    <v-layout v-if="showInputFields">
       <v-text-field
         v-model="movieName"
         flat
@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     showInputFields() {
-      return this.$route.name === "Home" ? true : false;
+      return this.$router.push("/") ? true : false;
     }
   },
   watch: {}

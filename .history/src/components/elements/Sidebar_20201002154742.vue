@@ -31,9 +31,9 @@ export default {
   data() {
     return {
       items: [
-        { title: "Фильмотека", icon: "mdi-home" },
-        { title: "Мои фильмы", icon: "mdi-star" },
+        { title: "Главная", icon: "mdi-home" },
         { title: "Профиль", icon: "mdi-account-circle" },
+        { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Выйти", icon: "mdi-exit-to-app" }
       ]
     };

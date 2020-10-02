@@ -5,7 +5,7 @@
   <v-app-bar color="green lighten-4" app clipped-left>
     <v-app-bar-nav-icon @click.prevent="$emit('drawer')"></v-app-bar-nav-icon>
 
-    <v-toolbar-title>LovedMovie</v-toolbar-title>
+    <v-toolbar-title>Title</v-toolbar-title>
     <v-icon>mdi-spin</v-icon>
     <v-spacer></v-spacer>
     <v-layout v-show="this.showInputFields">

@@ -31,16 +31,14 @@ export default {
   data() {
     return {
       items: [
-        { title: "Фильмотека", icon: "mdi-home" },
-        { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Профиль", icon: "mdi-account-circle" },
+        { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Выйти", icon: "mdi-exit-to-app" }
       ]
     };
   },
   methods: {
     async logout(event) {
-      console.log(event);
       await this.$store.dispatch("logout");
       this.$router.push("/login?message=logout");
     },
@@ -52,12 +50,6 @@ export default {
           persistent: false
         });
         res ? this.logout() : null;
-      } else if (title === "Мои фильмы" && this.$route.path !== "/myfilms") {
-        this.$router.push("/myfilms");
-      } else if (title === "Профиль" && this.$route.path !== "/profile") {
-        this.$router.push("/profile");
-      } else if (title === "Фильмотека" && this.$route.path !== "/") {
-        this.$router.push("/");
       }
     }
   },

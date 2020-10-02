@@ -31,9 +31,9 @@ export default {
   data() {
     return {
       items: [
-        { title: "Фильмотека", icon: "mdi-home" },
-        { title: "Мои фильмы", icon: "mdi-star" },
+        { title: "Главная", icon: "mdi-exit-to-app" },
         { title: "Профиль", icon: "mdi-account-circle" },
+        { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Выйти", icon: "mdi-exit-to-app" }
       ]
     };
@@ -56,8 +56,6 @@ export default {
         this.$router.push("/myfilms");
       } else if (title === "Профиль" && this.$route.path !== "/profile") {
         this.$router.push("/profile");
-      } else if (title === "Фильмотека" && this.$route.path !== "/") {
-        this.$router.push("/");
       }
     }
   },

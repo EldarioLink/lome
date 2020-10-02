@@ -34,6 +34,7 @@ export default {
         { title: "Фильмотека", icon: "mdi-home" },
         { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Профиль", icon: "mdi-account-circle" },
+
         { title: "Выйти", icon: "mdi-exit-to-app" }
       ]
     };

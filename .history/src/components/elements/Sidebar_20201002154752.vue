@@ -32,8 +32,8 @@ export default {
     return {
       items: [
         { title: "Фильмотека", icon: "mdi-home" },
-        { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Профиль", icon: "mdi-account-circle" },
+        { title: "Мои фильмы", icon: "mdi-star" },
         { title: "Выйти", icon: "mdi-exit-to-app" }
       ]
     };
