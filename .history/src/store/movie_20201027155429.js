@@ -44,19 +44,17 @@ export default {
         });
     },
     async addFavoriteMovie({ dispatch, commit }) {
-      const uid = await dispatch("getUid");
-      console.log(uid);
-      // try {
-      //   const uid = await dispatch("getUid");
-      //   const category = await firebase
-      //     .database()
-      //     .ref(`users/${uid}/categories`)
-      //     .push({ title, limit });
-      //   return { title, limit, id: category.key };
-      // } catch (e) {
-      //   commit("setError", e);
-      //   throw e;
-      // }
+      try {
+        const uid = await dispatch("getUid");
+        const category = await firebase
+          .database()
+          .ref(`users/${uid}/categories`)
+          .push({ title, limit });
+        return { title, limit, id: category.key };
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
     }
   },
   getters: {

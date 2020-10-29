@@ -58,18 +58,16 @@ export default {
   }),
   methods: {
     likerBtn() {
-      //   movie.like = !movie.like;
+      movie.like = !movie.like;
     }
   },
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      console.log(
-        this.moviesInfo.titles.slice(
-          (this.page - 1) * this.perPage,
-          this.page * this.perPage
-        )
-      );
+      console.log(  this.moviesInfo.titles.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );)
       return this.moviesInfo.titles.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage

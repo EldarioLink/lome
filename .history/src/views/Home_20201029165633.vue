@@ -58,7 +58,7 @@ export default {
   }),
   methods: {
     likerBtn() {
-      //   movie.like = !movie.like;
+      movie.like = !movie.like;
     }
   },
   computed: {

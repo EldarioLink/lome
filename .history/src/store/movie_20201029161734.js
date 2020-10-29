@@ -44,8 +44,6 @@ export default {
         });
     },
     async addFavoriteMovie({ dispatch, commit }) {
-      const uid = await dispatch("getUid");
-      console.log(uid);
       // try {
       //   const uid = await dispatch("getUid");
       //   const category = await firebase
