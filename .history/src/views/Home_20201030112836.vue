@@ -62,7 +62,7 @@ export default {
       //   movie.like = !movie.like; icon
       this.addFavoriteMovie({
         like: "false",
-        movieId
+        movieId: movieId
       });
     }
   },

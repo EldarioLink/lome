@@ -7,7 +7,7 @@ import store from "./store";
 import firebase from "firebase/app";
 
 import "firebase/auth";
-import "firebase/database";
+require("firebase/database");
 import vuetify from "./plugins/vuetify";
 
 import messagePlugin from "@/common/message.plugin";

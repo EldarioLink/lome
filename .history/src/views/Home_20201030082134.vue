@@ -26,7 +26,7 @@
                 Подробнее
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="likerBtn(movie.id)">
+              <v-btn icon @click="likerBtn()">
                 <v-icon>{{
                   movie.like ? "mdi-heart" : "mdi-heart-outline"
                 }}</v-icon>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     page: 1,
@@ -57,13 +57,8 @@ export default {
     like: false
   }),
   methods: {
-    ...mapActions(["addFavoriteMovie"]),
-    likerBtn(movieId) {
-      //   movie.like = !movie.like; icon
-      this.addFavoriteMovie({
-        like: "false",
-        movieId
-      });
+    likerBtn() {
+      //   movie.like = !movie.like;
     }
   },
   computed: {

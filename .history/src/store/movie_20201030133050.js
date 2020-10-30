@@ -44,11 +44,14 @@ export default {
     async addFavoriteMovie({ dispatch, commit }, { like, movieId }) {
       try {
         const uid = await dispatch("getUid");
+        // const info = await firebase
+        //   .database()
+        //   .ref(`users/${uid}/info`)
+        //   .push({ like, movieId });
         const info = await firebase
           .database()
           .ref(`users/${uid}/info`)
-          .push({ like, movieId });
-        console.log(info.key);
+          .update({ like, movieId });
         return { like, id: info.key };
       } catch (e) {
         commit("setError", e);

@@ -18,6 +18,7 @@ export default {
   },
   actions: {
     searchMovie({ dispatch, commit }, movieName) {
+      console.log(movieName);
       Vue.axios
         .get(
           `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
@@ -32,8 +33,9 @@ export default {
           }
         )
         .then(response => {
-          console.log(typeof response.data.titles);
+          console.log(response);
           this.commit("setMovie", response.data);
+          console.log("from", this.getMovie);
         })
         .catch(err => {
           console.log(err);
@@ -41,15 +43,15 @@ export default {
           throw err;
         });
     },
-    async addFavoriteMovie({ dispatch, commit }, { like, movieId }) {
+    async addFavoriteMovie({ dispatch, commit }) {
+      const uid = await dispatch("getUid");
       try {
         const uid = await dispatch("getUid");
-        const info = await firebase
+        const category = await firebase
           .database()
-          .ref(`users/${uid}/info`)
-          .push({ like, movieId });
-        console.log(info.key);
-        return { like, id: info.key };
+          .ref(`users/${uid}/categories`)
+          .push({ title });
+        return { title, limit, id: category.key };
       } catch (e) {
         commit("setError", e);
         throw e;

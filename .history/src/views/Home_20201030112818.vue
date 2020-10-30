@@ -58,11 +58,11 @@ export default {
   }),
   methods: {
     ...mapActions(["addFavoriteMovie"]),
-    likerBtn(movieId) {
+    likerBtn() {
       //   movie.like = !movie.like; icon
       this.addFavoriteMovie({
         like: "false",
-        movieId
+        movieId:
       });
     }
   },

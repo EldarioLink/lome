@@ -32,7 +32,6 @@ export default {
           }
         )
         .then(response => {
-          console.log(typeof response.data.titles);
           this.commit("setMovie", response.data);
         })
         .catch(err => {
@@ -48,7 +47,6 @@ export default {
           .database()
           .ref(`users/${uid}/info`)
           .push({ like, movieId });
-        console.log(info.key);
         return { like, id: info.key };
       } catch (e) {
         commit("setError", e);

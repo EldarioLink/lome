@@ -60,7 +60,7 @@ export default {
     ...mapActions(["addFavoriteMovie"]),
     likerBtn(movieId) {
       //   movie.like = !movie.like; icon
-      this.addFavoriteMovie({
+      let what = this.addFavoriteMovie({
         like: "false",
         movieId
       });

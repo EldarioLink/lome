@@ -26,7 +26,7 @@
                 Подробнее
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="likerBtn(movie.id)">
+              <v-btn icon @click="likerBtn()">
                 <v-icon>{{
                   movie.like ? "mdi-heart" : "mdi-heart-outline"
                 }}</v-icon>
@@ -58,12 +58,9 @@ export default {
   }),
   methods: {
     ...mapActions(["addFavoriteMovie"]),
-    likerBtn(movieId) {
+    likerBtn() {
       //   movie.like = !movie.like; icon
-      this.addFavoriteMovie({
-        like: "false",
-        movieId
-      });
+      this.addFavoriteMovie();
     }
   },
   computed: {
