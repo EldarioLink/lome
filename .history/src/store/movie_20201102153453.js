@@ -20,24 +20,18 @@ export default {
     async fetchMovieById({ commit, dispatch }, movieData) {
       try {
         const uid = await dispatch("getUid");
-        const movieFullData = [];
-        await Promise.all(
-          movieData.map(async movie => {
-            let id =
-              (
-                await firebase
-                  .database()
-                  .ref(`users/${uid}/info`)
-                  .child(movie.id)
-                  .once("value")
-              ).val() || {};
-            if (id.like !== true) return false;
-            console.log(id);
-            movie["like"] = id.like;
-            movieFullData.push(movie);
-          })
-        );
-        return movieFullData;
+        const fullMovieData = await movieData.map(movie => {
+          let id =
+            firebase
+              .database()
+              .ref(`users/${uid}/info`)
+              .child(movie.id)
+              .once("value")
+              .val() || {};
+          movie["like"] = id.like;
+        });
+        console.log(fullMovieData);
+        return { fullMovieData };
       } catch (e) {
         commit("setError", e);
         throw e;
@@ -58,6 +52,8 @@ export default {
           }
         )
         .then(response => {
+          console.log("1", response.data.titles);
+
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
             this.commit("setMovie", movieData);
           });
@@ -71,7 +67,6 @@ export default {
     async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
       try {
         const uid = await dispatch("getUid");
-        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)

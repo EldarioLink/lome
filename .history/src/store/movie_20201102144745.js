@@ -17,32 +17,33 @@ export default {
     }
   },
   actions: {
-    async fetchMovieById({ commit, dispatch }, movieData) {
-      try {
-        const uid = await dispatch("getUid");
-        const movieFullData = [];
-        await Promise.all(
-          movieData.map(async movie => {
-            let id =
-              (
-                await firebase
-                  .database()
-                  .ref(`users/${uid}/info`)
-                  .child(movie.id)
-                  .once("value")
-              ).val() || {};
-            if (id.like !== true) return false;
-            console.log(id);
-            movie["like"] = id.like;
-            movieFullData.push(movie);
-          })
-        );
-        return movieFullData;
-      } catch (e) {
-        commit("setError", e);
-        throw e;
-      }
-    },
+    // async fetchMovieById({ commit, dispatch }, moviesData) {
+    //   try {
+    //     const uid = await dispatch("getUid");
+    //     const category =
+    //       (
+    //         await firebase
+    //           .database()
+    //           .ref(`users/${uid}/info`)
+    //           .child(id)
+    //           .once("value")
+    //       ).val() || {};
+    //     // const cats = [];
+    //     // Object.keys(categories).forEach(key => {
+    //     //   cats.push({
+    //     //     title: categories[key].title,
+    //     //     limit: categories[key].limit,
+    //     //     id: key
+    //     //   });
+    //     // });
+    //     // return cats;
+    //     console.log(category);
+    //     return { ...category };
+    //   } catch (e) {
+    //     commit("setError", e);
+    //     throw e;
+    //   }
+    // },
     fetchMovie({ dispatch, commit }, movieName) {
       Vue.axios
         .get(
@@ -58,9 +59,12 @@ export default {
           }
         )
         .then(response => {
-          dispatch("fetchMovieById", response.data.titles).then(movieData => {
-            this.commit("setMovie", movieData);
+          console.log(response.data.titles);
+          var doubles = response.data.titles.map(num => {
+            this.fetchMovieById(response);
           });
+
+          this.commit("setMovie", response.data);
         })
         .catch(err => {
           console.log(err);
@@ -71,7 +75,6 @@ export default {
     async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
       try {
         const uid = await dispatch("getUid");
-        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)

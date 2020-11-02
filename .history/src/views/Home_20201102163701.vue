@@ -26,7 +26,7 @@
                 Подробнее
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="likerBtn(movie.id, movie.like)">
+              <v-btn icon @click="likerBtn(movie.id)">
                 <v-icon>{{
                   movie.like ? "mdi-heart" : "mdi-heart-outline"
                 }}</v-icon>
@@ -57,11 +57,11 @@ export default {
   }),
   methods: {
     ...mapActions(["updateFavoriteMovie"]),
-    likerBtn(id, like) {
-      console.log(`${id},${like} to ${!like}`);
+    likerBtn(movieId) {
+      console.log(`${movieId.like},to ${!movieId}`);
       this.updateFavoriteMovie({
-        like: !like,
-        movieId: id
+        like: !movieId,
+        movieId
       });
     }
   },

@@ -32,7 +32,7 @@ export default {
                   .once("value")
               ).val() || {};
             if (id.like !== true) return false;
-            console.log(id);
+            console.log(id.like);
             movie["like"] = id.like;
             movieFullData.push(movie);
           })
@@ -58,6 +58,7 @@ export default {
           }
         )
         .then(response => {
+          console.log(response);
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
             this.commit("setMovie", movieData);
           });

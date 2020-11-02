@@ -59,6 +59,7 @@ export default {
         )
         .then(response => {
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
+            console.log(movieData);
             this.commit("setMovie", movieData);
           });
         })

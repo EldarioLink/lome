@@ -17,33 +17,7 @@ export default {
     }
   },
   actions: {
-    async fetchMovieById({ commit, dispatch }, movieData) {
-      try {
-        const uid = await dispatch("getUid");
-        const movieFullData = [];
-        await Promise.all(
-          movieData.map(async movie => {
-            let id =
-              (
-                await firebase
-                  .database()
-                  .ref(`users/${uid}/info`)
-                  .child(movie.id)
-                  .once("value")
-              ).val() || {};
-            if (id.like !== true) return false;
-            console.log(id);
-            movie["like"] = id.like;
-            movieFullData.push(movie);
-          })
-        );
-        return movieFullData;
-      } catch (e) {
-        commit("setError", e);
-        throw e;
-      }
-    },
-    fetchMovie({ dispatch, commit }, movieName) {
+    searchMovie({ dispatch, commit }, movieName) {
       Vue.axios
         .get(
           `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
@@ -58,9 +32,8 @@ export default {
           }
         )
         .then(response => {
-          dispatch("fetchMovieById", response.data.titles).then(movieData => {
-            this.commit("setMovie", movieData);
-          });
+          console.log(typeof response.data.titles);
+          this.commit("setMovie", response.data);
         })
         .catch(err => {
           console.log(err);
@@ -71,7 +44,6 @@ export default {
     async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
       try {
         const uid = await dispatch("getUid");
-        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)

@@ -58,10 +58,10 @@ export default {
   methods: {
     ...mapActions(["updateFavoriteMovie"]),
     likerBtn(id, like) {
-      console.log(`${id},${like} to ${!like}`);
+      console.log(`${movieId.id},${movieId.like} to ${!movieId.like}`);
       this.updateFavoriteMovie({
-        like: !like,
-        movieId: id
+        like: !movieId.like,
+        movieId: movieId.id
       });
     }
   },

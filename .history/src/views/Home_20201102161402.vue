@@ -26,7 +26,7 @@
                 Подробнее
               </v-btn>
               <v-spacer></v-spacer>
-              <v-btn icon @click="likerBtn(movie.id, movie.like)">
+              <v-btn icon @click="likerBtn(movie.id)">
                 <v-icon>{{
                   movie.like ? "mdi-heart" : "mdi-heart-outline"
                 }}</v-icon>
@@ -40,7 +40,7 @@
         <v-pagination
           color="primary"
           v-model="page"
-          :length="Math.ceil(this.moviesInfo.length / perPage)"
+          :length="Math.ceil(this.moviesInfo.titles.length / perPage)"
         ></v-pagination>
       </div>
     </div>
@@ -53,15 +53,16 @@ export default {
   data: () => ({
     page: 1,
     loading: true,
-    perPage: 8
+    perPage: 8,
+    like: false
   }),
   methods: {
     ...mapActions(["updateFavoriteMovie"]),
-    likerBtn(id, like) {
-      console.log(`${id},${like} to ${!like}`);
+    likerBtn(movieId) {
+      // movie.like = !movie.like; icon
       this.updateFavoriteMovie({
-        like: !like,
-        movieId: id
+        like: "false",
+        movieId
       });
     }
   },

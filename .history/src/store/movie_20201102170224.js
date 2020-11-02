@@ -29,7 +29,6 @@ export default {
                   .database()
                   .ref(`users/${uid}/info`)
                   .child(movie.id)
-                  .once("value")
               ).val() || {};
             if (id.like !== true) return false;
             console.log(id);
