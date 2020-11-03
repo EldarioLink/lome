@@ -34,7 +34,7 @@ export default {
                   .once("value")
               ).val() || {};
             let existLike = id.like !== true ? false : true;
-            console.log("existLike", existLike);
+            console.log(existLike);
             movie["like"] = existLike;
             console.log("progress");
 

@@ -21,8 +21,6 @@ export default {
       try {
         const uid = await dispatch("getUid");
         const movieFullData = [];
-        console.log("start");
-
         await Promise.all(
           movieData.map(async movie => {
             let id =
@@ -33,16 +31,11 @@ export default {
                   .child(movie.id)
                   .once("value")
               ).val() || {};
-            let existLike = id.like !== true ? false : true;
-            console.log("existLike", existLike);
-            movie["like"] = existLike;
-            console.log("progress");
-
+            if (id.like !== true) return false;
+            movie["like"] = id.like;
             movieFullData.push(movie);
           })
         );
-        console.log("end");
-
         return movieFullData;
       } catch (e) {
         commit("setError", e);
@@ -66,7 +59,7 @@ export default {
         .then(response => {
           console.log("1");
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
-            console.log("1-2");
+            console.log("1-2", movieData);
 
             this.commit("setMovie", movieData);
             console.log("2");

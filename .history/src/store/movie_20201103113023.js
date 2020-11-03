@@ -33,11 +33,8 @@ export default {
                   .child(movie.id)
                   .once("value")
               ).val() || {};
-            let existLike = id.like !== true ? false : true;
-            console.log("existLike", existLike);
-            movie["like"] = existLike;
-            console.log("progress");
-
+            if (id.like !== true) return false;
+            movie["like"] = id.like;
             movieFullData.push(movie);
           })
         );
