@@ -58,21 +58,24 @@ export default {
   methods: {
     ...mapActions(["updateFavoriteMovie"]),
     likerBtn(id, like) {
+      console.log(`${id},${like} to ${like}`);
       this.updateFavoriteMovie({
-        like: !like,
+        like: like,
         movieId: id
       });
-
-      // in here
     }
   },
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
+      console.log(this.moviesInfo);
       return this.moviesInfo.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
+    },
+    liker() {
+      return this.like ? "mdi-heart" : "mdi-heart-outline";
     }
   },
   mounted() {}

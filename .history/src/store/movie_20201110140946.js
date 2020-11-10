@@ -93,6 +93,7 @@ export default {
     ) {
       try {
         const uid = await dispatch("getUid");
+        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)

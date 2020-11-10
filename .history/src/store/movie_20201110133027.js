@@ -93,19 +93,20 @@ export default {
     ) {
       try {
         const uid = await dispatch("getUid");
+        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)
           .child(movieId)
           .update({ like });
         const moviesLikeChange = this.getters.getMovie;
+        console.log("changed", oneMovie.id, like, this.movieId);
 
         moviesLikeChange.map(oneMovie => {
-          if (oneMovie.id === movieId) {
+          if (oneMovie.id === this.moveId) {
             oneMovie.like = like;
           }
         });
-
         commit("clearMovie");
         commit("setMovie", moviesLikeChange);
       } catch (e) {

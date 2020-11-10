@@ -13,11 +13,11 @@ export default {
       state.movieData = data;
     },
     clearMovie(state) {
-      state.movieData = null;
+      state.movieData.length = 0;
     }
   },
   actions: {
-    async fetchMovieById({ getters, commit, dispatch }, movieData) {
+    async fetchMovieById({ commit, dispatch }, movieData) {
       try {
         const uid = await dispatch("getUid");
         const movieFullData = [];
@@ -26,17 +26,10 @@ export default {
 
         likeChange.on("value", function(snapshot) {
           commit("clearMovie");
-          movieFullData.map(movie => {
-            for (let key in snapshot.val()) {
-              if (movie.id === key.like) {
-                movie.id = key.like;
-              }
-            }
-          });
-          commit("clearMovie");
-          commit("setMovie", movieFullData);
+          //commit("setMovie", snapshot.val());
         });
         ////
+        console.log("out", movieData);
 
         await Promise.all(
           movieData.map(async movie => {
@@ -52,10 +45,12 @@ export default {
               ).val() || {};
             let existLike = id.like !== true ? false : true;
             movie["like"] = existLike;
+            console.log("progress");
 
             movieFullData.push(movie);
           })
         );
+        console.log("end");
 
         return movieFullData;
       } catch (e) {
@@ -78,36 +73,30 @@ export default {
           }
         )
         .then(response => {
+          console.log("1");
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
+            console.log("1-2");
+
             this.commit("setMovie", movieData);
+            console.log("2");
           });
+          console.log("3");
         })
         .catch(err => {
+          console.log(err);
           commit("setError", err);
           throw err;
         });
     },
-    async updateFavoriteMovie(
-      { getters, dispatch, commit },
-      { like, movieId }
-    ) {
+    async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
       try {
         const uid = await dispatch("getUid");
+        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)
           .child(movieId)
           .update({ like });
-        const moviesLikeChange = this.getters.getMovie;
-
-        moviesLikeChange.map(oneMovie => {
-          if (oneMovie.id === movieId) {
-            oneMovie.like = like;
-          }
-        });
-
-        commit("clearMovie");
-        commit("setMovie", moviesLikeChange);
       } catch (e) {
         commit("setError", e);
         throw e;

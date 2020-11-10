@@ -13,7 +13,7 @@ export default {
       state.movieData = data;
     },
     clearMovie(state) {
-      state.movieData = null;
+      state.movieData = [];
     }
   },
   actions: {
@@ -26,6 +26,8 @@ export default {
 
         likeChange.on("value", function(snapshot) {
           commit("clearMovie");
+          console.log("fulldata", movieFullData);
+          console.log();
           movieFullData.map(movie => {
             for (let key in snapshot.val()) {
               if (movie.id === key.like) {
@@ -34,9 +36,12 @@ export default {
             }
           });
           commit("clearMovie");
+          console.log("getmovies", getters.getMovie);
           commit("setMovie", movieFullData);
+          console.log("fullmovies", getters.getMovie);
         });
         ////
+        console.log("out", movieData);
 
         await Promise.all(
           movieData.map(async movie => {
@@ -52,10 +57,12 @@ export default {
               ).val() || {};
             let existLike = id.like !== true ? false : true;
             movie["like"] = existLike;
+            console.log("progress");
 
             movieFullData.push(movie);
           })
         );
+        console.log("end");
 
         return movieFullData;
       } catch (e) {
@@ -78,11 +85,17 @@ export default {
           }
         )
         .then(response => {
+          console.log("1");
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
+            console.log("1-2");
+
             this.commit("setMovie", movieData);
+            console.log("2");
           });
+          console.log("3");
         })
         .catch(err => {
+          console.log(err);
           commit("setError", err);
           throw err;
         });
@@ -93,6 +106,7 @@ export default {
     ) {
       try {
         const uid = await dispatch("getUid");
+        console.log(like, movieId);
         await firebase
           .database()
           .ref(`users/${uid}/info`)
@@ -101,13 +115,9 @@ export default {
         const moviesLikeChange = this.getters.getMovie;
 
         moviesLikeChange.map(oneMovie => {
-          if (oneMovie.id === movieId) {
-            oneMovie.like = like;
-          }
+          oneMovie.like = like;
         });
-
-        commit("clearMovie");
-        commit("setMovie", moviesLikeChange);
+        commit.clearMovie;
       } catch (e) {
         commit("setError", e);
         throw e;

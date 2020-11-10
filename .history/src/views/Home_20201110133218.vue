@@ -58,6 +58,9 @@ export default {
   methods: {
     ...mapActions(["updateFavoriteMovie"]),
     likerBtn(id, like) {
+      console.log(`${id},${like} to ${!like}`);
+      console.log(typeof oneMovie.id);
+
       this.updateFavoriteMovie({
         like: !like,
         movieId: id
@@ -69,6 +72,7 @@ export default {
   computed: {
     ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
+      console.log(this.moviesInfo);
       return this.moviesInfo.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
