@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="this.loading">
-      <Loader />
+    <div>
+      <Loader v-if="loading" />
     </div>
-    <div v-if="!this.loading && this.moviesInfo">
+    <div>
       <v-layout class="d-flex  flex-wrap justify-center mb-6">
         <v-flex
           v-for="movie in visiblePages"
@@ -52,6 +52,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     page: 1,
+    loading: true,
     perPage: 8
   }),
   methods: {
@@ -64,9 +65,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ moviesInfo: "getMovie", loading: "getLoading" }),
+    ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      console.log(this.moviesInfo);
       return this.moviesInfo.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage

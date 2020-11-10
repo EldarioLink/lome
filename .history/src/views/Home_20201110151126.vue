@@ -3,7 +3,7 @@
     <div v-if="this.loading">
       <Loader />
     </div>
-    <div v-if="!this.loading && this.moviesInfo">
+    <div v-else>
       <v-layout class="d-flex  flex-wrap justify-center mb-6">
         <v-flex
           v-for="movie in visiblePages"

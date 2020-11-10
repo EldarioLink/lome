@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="this.loading">
+    <div v-if="this.loading && !this.moviesInfo">
       <Loader />
     </div>
     <div v-if="!this.loading && this.moviesInfo">

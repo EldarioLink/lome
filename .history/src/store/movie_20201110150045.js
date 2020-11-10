@@ -13,7 +13,7 @@ export default {
       state.movieData = data;
     },
     clearMovie(state) {
-      state.movieData = [];
+      state.movieData = []];
     },
     setLoading(state, isLoading) {
       state.loading = isLoading;

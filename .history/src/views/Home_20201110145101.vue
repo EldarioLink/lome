@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="this.loading">
+    <div v-if="loading">
       <Loader />
     </div>
-    <div v-if="!this.loading && this.moviesInfo">
+    <div v-else>
       <v-layout class="d-flex  flex-wrap justify-center mb-6">
         <v-flex
           v-for="movie in visiblePages"
@@ -64,9 +64,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ moviesInfo: "getMovie", loading: "getLoading" }),
+    ...mapGetters({ moviesInfo: "getMovie" }),
     visiblePages() {
-      console.log(this.moviesInfo);
       return this.moviesInfo.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage

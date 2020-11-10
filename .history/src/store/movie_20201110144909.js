@@ -13,7 +13,7 @@ export default {
       state.movieData = data;
     },
     clearMovie(state) {
-      state.movieData = [];
+      state.movieData = null;
     },
     setLoading(state, isLoading) {
       state.loading = isLoading;
@@ -36,7 +36,7 @@ export default {
               }
             }
           });
-          console.log("datas", movieFullData);
+          commit("clearMovie");
           commit("setMovie", movieFullData);
         });
         ////
@@ -84,7 +84,6 @@ export default {
         .then(response => {
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
             this.commit("setMovie", movieData);
-            commit("setLoading", false);
           });
         })
         .catch(err => {

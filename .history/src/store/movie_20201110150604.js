@@ -5,7 +5,7 @@ import Vue from "vue";
 
 export default {
   state: {
-    movieData: null,
+    movieData: [],
     loading: false
   },
   mutations: {

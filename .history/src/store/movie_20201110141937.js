@@ -13,10 +13,7 @@ export default {
       state.movieData = data;
     },
     clearMovie(state) {
-      state.movieData = [];
-    },
-    setLoading(state, isLoading) {
-      state.loading = isLoading;
+      state.movieData = null;
     }
   },
   actions: {
@@ -36,7 +33,7 @@ export default {
               }
             }
           });
-          console.log("datas", movieFullData);
+          commit("clearMovie");
           commit("setMovie", movieFullData);
         });
         ////
@@ -66,8 +63,7 @@ export default {
         throw e;
       }
     },
-    fetchMovie({ getters, dispatch, commit }, movieName) {
-      commit("setLoading", true);
+    fetchMovie({ dispatch, commit }, movieName) {
       Vue.axios
         .get(
           `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
@@ -84,7 +80,6 @@ export default {
         .then(response => {
           dispatch("fetchMovieById", response.data.titles).then(movieData => {
             this.commit("setMovie", movieData);
-            commit("setLoading", false);
           });
         })
         .catch(err => {
@@ -117,7 +112,6 @@ export default {
     }
   },
   getters: {
-    getMovie: s => s.movieData,
-    getLoading: s => s.loading
+    getMovie: s => s.movieData
   }
 };
