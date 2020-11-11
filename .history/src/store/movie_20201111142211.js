@@ -24,6 +24,20 @@ export default {
       try {
         const uid = await dispatch("getUid");
         const movieFullData = [];
+        ///
+        var likeChange = firebase.database().ref("users/" + uid + "/info");
+
+        likeChange.on("value", function(snapshot) {
+          commit("clearMovie");
+          movieFullData.map(movie => {
+            for (let key in snapshot.val()) {
+              console.log(movie.id, key.like);
+            }
+          });
+          console.log("datas", movieFullData);
+          commit("setMovie", movieFullData);
+        });
+        ////
 
         await Promise.all(
           movieData.map(async movie => {

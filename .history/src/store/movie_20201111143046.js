@@ -24,6 +24,17 @@ export default {
       try {
         const uid = await dispatch("getUid");
         const movieFullData = [];
+        ///
+        var likeChange = firebase.database().ref("users/" + uid + "/info");
+
+        likeChange.on("value", function(snapshot) {
+          console.log(snapshot.val());
+          console.log("why in here");
+
+          commit("clearMovie");
+          commit("setMovie", snapshot.val());
+        });
+        ////
 
         await Promise.all(
           movieData.map(async movie => {
@@ -84,7 +95,7 @@ export default {
           .ref(`users/${uid}/info`)
           .child(movieId)
           .update({ like });
-        const moviesLikeChange = this.getters.getMovie;
+        /*   const moviesLikeChange = this.getters.getMovie;
 
         moviesLikeChange.map(oneMovie => {
           if (oneMovie.id === movieId) {
@@ -93,7 +104,7 @@ export default {
         });
 
         commit("clearMovie");
-        commit("setMovie", moviesLikeChange);
+        commit("setMovie", moviesLikeChange); */
       } catch (e) {
         commit("setError", e);
         throw e;

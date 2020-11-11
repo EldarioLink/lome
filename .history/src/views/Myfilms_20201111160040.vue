@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-flex
-      v-for="movie in this.showLikedMovies"
+      v-for="movie in visiblePages"
       :key="movie.id"
       max-width="344"
       class="md2 pr-2 pt-2 "
@@ -21,7 +21,7 @@
             Подробнее
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon @click="likerBtn(movie.id, movie.like)">
             <v-icon>{{
               movie.like ? "mdi-heart" : "mdi-heart-outline"
             }}</v-icon>

@@ -21,7 +21,7 @@
             Подробнее
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon @click="likerBtn(movie.id, movie.like)">
             <v-icon>{{
               movie.like ? "mdi-heart" : "mdi-heart-outline"
             }}</v-icon>

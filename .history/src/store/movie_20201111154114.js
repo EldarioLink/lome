@@ -102,6 +102,7 @@ export default {
   },
   getters: {
     getMovie: s => s.movieData,
-    getLoading: s => s.loading
+    getLoading: s => s.loading,
+    getlikedMovies: s => s.likedMovies
   }
 };

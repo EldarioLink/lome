@@ -98,6 +98,29 @@ export default {
         commit("setError", e);
         throw e;
       }
+    },
+    async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
+      try {
+        const uid = await dispatch("getUid");
+        await firebase
+          .database()
+          .ref(`users/${uid}/info`)
+          .child(movieId)
+          .update({ like });
+        const moviesLikeChange = this.getters.getMovie;
+
+        moviesLikeChange.map(oneMovie => {
+          if (oneMovie.id === movieId) {
+            oneMovie.like = like;
+          }
+        });
+
+        commit("clearMovie");
+        commit("setMovie", moviesLikeChange);
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
     }
   },
   getters: {

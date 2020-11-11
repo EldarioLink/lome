@@ -17,6 +17,9 @@ export default {
     },
     setLoading(state, isLoading) {
       state.loading = isLoading;
+    },
+    setLoading(state, isLoading) {
+      state.loading = isLoading;
     }
   },
   actions: {
@@ -94,6 +97,22 @@ export default {
 
         commit("clearMovie");
         commit("setMovie", moviesLikeChange);
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
+    },
+    async showLikedMovies({ dispatch, commit }) {
+      try {
+        let ref = defaultDB.reference.child("usernames")
+        ref.queryOrdered(byChild: "username").queryEqual(toValue: "sean").observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            if snapshot.exists() {
+                print("exists")
+            }
+            else {
+                print("doesn't exist")
+            }
+        }
       } catch (e) {
         commit("setError", e);
         throw e;
