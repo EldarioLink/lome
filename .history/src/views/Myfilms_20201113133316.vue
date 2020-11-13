@@ -45,7 +45,7 @@ export default {
         image:
           "https://m.media-amazon.com/images/M/MV5BMjE4NTA4NzQ4NF5BMl5BanBnXkFtZTcwMjIwOTEzMQ@@.jpg",
         like: true,
-        title: "Lost2"
+        title: "Lost"
       }
     ]
   }),

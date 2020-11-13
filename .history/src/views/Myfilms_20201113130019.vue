@@ -1,12 +1,13 @@
 <template>
   <div>
-    <v-layout class="column">
-      <v-flex
-        v-for="movie in this.testMovies"
-        :key="movie.id"
-        max-width="344"
-        class="md2 pr-2 pt-2 "
-      >
+      <v-layout class="d-flex  flex-wrap justify-center mb-6">
+
+    <v-flex
+      v-for="movie in this.testMovies"
+      :key="movie.id"
+      max-width="344"
+      class="md2 pr-2 pt-2 "
+    >
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="headline">{{
@@ -14,8 +15,8 @@
             }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-flex>
-    </v-layout>
+      </v-layout>
+    </v-flex>
   </div>
 </template>
 
@@ -45,7 +46,7 @@ export default {
         image:
           "https://m.media-amazon.com/images/M/MV5BMjE4NTA4NzQ4NF5BMl5BanBnXkFtZTcwMjIwOTEzMQ@@.jpg",
         like: true,
-        title: "Lost2"
+        title: "Lost"
       }
     ]
   }),

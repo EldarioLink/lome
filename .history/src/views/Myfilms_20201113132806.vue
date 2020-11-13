@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-layout class="column">
+    <v-layout class="justify-center mb-6">
       <v-flex
         v-for="movie in this.testMovies"
         :key="movie.id"
@@ -45,7 +45,7 @@ export default {
         image:
           "https://m.media-amazon.com/images/M/MV5BMjE4NTA4NzQ4NF5BMl5BanBnXkFtZTcwMjIwOTEzMQ@@.jpg",
         like: true,
-        title: "Lost2"
+        title: "Lost"
       }
     ]
   }),

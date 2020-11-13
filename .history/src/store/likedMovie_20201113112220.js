@@ -27,7 +27,7 @@ export default {
         for (var key in likedMovies) {
           console.log(likedMovies[key].like);
           if (likedMovies[key].like === true) {
-            console.log("doThat");
+            console.log("workisgetters", getters.getlikedMovies);
           }
         }
 
