@@ -4,23 +4,14 @@ import firebase from "firebase/app";
 import Vue from "vue";
 
 export default {
-  state: {
-    likedMovies: null
-  },
+  state: {},
   mutations: {
     likedMovies(state, data) {
       state.allMovies = data;
     }
   },
   actions: {
-    async SHOW_LIKED_MOVIES({
-      getters,
-      dispatch,
-      commit,
-      rootState,
-      rootGetters
-    }) {
-      commit("setLoading", true);
+    async SHOW_LIKED_MOVIES({ getters, dispatch, commit }) {
       const likedMovies = [];
       try {
         const uid = await dispatch("getUid");
@@ -31,6 +22,8 @@ export default {
               .ref(`users/${uid}/info`)
               .once("value")
           ).val() || {};
+
+        console.log(allMovies);
 
         for (var key in allMovies) {
           if (allMovies[key].like === true) {
@@ -51,18 +44,17 @@ export default {
                 let obj = Object.assign({}, response.data);
                 obj.like = true;
                 likedMovies.push(obj);
-                console.log(likedMovies);
-                console.log("lolo");
               });
           }
         }
+        commit("likedMovies", likedMovies);
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;
       }
     }
   },
-  getters: {
-    getLikedMovie: s => s.likedMovies
-  }
+  getters: {}
 };

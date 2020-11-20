@@ -56,6 +56,9 @@ export default {
               });
           }
         }
+        console.log(likedMovies);
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;

@@ -23,6 +23,8 @@ export default {
       commit("setLoading", true);
       const likedMovies = [];
       try {
+        await Promise.all(
+
         const uid = await dispatch("getUid");
         let allMovies =
           (
@@ -55,7 +57,10 @@ export default {
                 console.log("lolo");
               });
           }
-        }
+        })
+        console.log(likedMovies);
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;

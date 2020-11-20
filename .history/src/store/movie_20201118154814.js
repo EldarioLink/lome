@@ -51,30 +51,33 @@ export default {
     },
     FETCH_MOVIE({ getters, dispatch, commit }, movieName) {
       commit("setLoading", true);
-      Vue.axios
-        .get(
-          `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host":
-                "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-              "x-rapidapi-key":
-                "a67b43680emshc2b8ff4a8bf27ebp149f8ejsn7963f988d678"
+      let searchTrigger;
+      if (typeof movieName === String) ? searchTrigger = "search" : searchTrigger = "film"
+        Vue.axios
+          .get(
+            `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
+            {
+              method: "GET",
+              headers: {
+                "x-rapidapi-host":
+                  "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+                "x-rapidapi-key":
+                  "a67b43680emshc2b8ff4a8bf27ebp149f8ejsn7963f988d678"
+              }
             }
-          }
-        )
-        .then(response => {
-          dispatch("FETCHMOVIE_BY_ID", response.data.titles).then(movieData => {
-            console.log(response);
-            this.commit("setMovie", movieData);
-            commit("setLoading", false);
+          )
+          .then(response => {
+            dispatch("FETCHMOVIE_BY_ID", response.data.titles).then(
+              movieData => {
+                this.commit("setMovie", movieData);
+                commit("setLoading", false);
+              }
+            );
+          })
+          .catch(err => {
+            commit("setError", err);
+            throw err;
           });
-        })
-        .catch(err => {
-          commit("setError", err);
-          throw err;
-        });
     },
     async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
       try {

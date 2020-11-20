@@ -3,7 +3,7 @@
     <div v-if="this.loading">
       <Loader />
     </div>
-    <v-layout v-if="!this.loading && this.likedMovies" class="column">
+    <v-layout class="column">
       <v-flex
         v-for="movie in this.likedMovies"
         :key="movie.id"

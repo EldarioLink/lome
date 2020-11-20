@@ -53,9 +53,15 @@ export default {
                 likedMovies.push(obj);
                 console.log(likedMovies);
                 console.log("lolo");
+
+                commit("likedMovies", likedMovies);
+                commit("setLoading", false);
               });
           }
         }
+        console.log(likedMovies);
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;

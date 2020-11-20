@@ -51,6 +51,7 @@ export default {
     },
     FETCH_MOVIE({ getters, dispatch, commit }, movieName) {
       commit("setLoading", true);
+      let searchTrigger = typeof movieName === String ? "search" : "film";
       Vue.axios
         .get(
           `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movieName}`,
@@ -66,7 +67,6 @@ export default {
         )
         .then(response => {
           dispatch("FETCHMOVIE_BY_ID", response.data.titles).then(movieData => {
-            console.log(response);
             this.commit("setMovie", movieData);
             commit("setLoading", false);
           });

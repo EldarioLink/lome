@@ -66,7 +66,6 @@ export default {
         )
         .then(response => {
           dispatch("FETCHMOVIE_BY_ID", response.data.titles).then(movieData => {
-            console.log(response);
             this.commit("setMovie", movieData);
             commit("setLoading", false);
           });

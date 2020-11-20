@@ -1,11 +1,8 @@
 <template>
   <div>
-    <div v-if="this.loading">
-      <Loader />
-    </div>
-    <v-layout v-if="!this.loading && this.likedMovies" class="column">
+    <v-layout class="column">
       <v-flex
-        v-for="movie in this.likedMovies"
+        v-for="movie in this.testMovies"
         :key="movie.id"
         max-width="344"
         class="md2 pr-2 pt-2 "

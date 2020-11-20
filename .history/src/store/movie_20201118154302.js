@@ -20,7 +20,7 @@ export default {
     }
   },
   actions: {
-    async FETCHMOVIE_BY_ID({ commit, dispatch }, movieData) {
+    async fetchMovieById({ commit, dispatch }, movieData) {
       try {
         const uid = await dispatch("getUid");
         const movieFullData = [];
@@ -65,8 +65,7 @@ export default {
           }
         )
         .then(response => {
-          dispatch("FETCHMOVIE_BY_ID", response.data.titles).then(movieData => {
-            console.log(response);
+          dispatch("fetchMovieById", response.data.titles).then(movieData => {
             this.commit("setMovie", movieData);
             commit("setLoading", false);
           });

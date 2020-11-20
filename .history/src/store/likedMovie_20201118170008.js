@@ -32,6 +32,7 @@ export default {
               .once("value")
           ).val() || {};
 
+        Promise.all();
         for (var key in allMovies) {
           if (allMovies[key].like === true) {
             Vue.axios
@@ -56,6 +57,9 @@ export default {
               });
           }
         }
+        console.log(likedMovies);
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;

@@ -4,23 +4,14 @@ import firebase from "firebase/app";
 import Vue from "vue";
 
 export default {
-  state: {
-    likedMovies: null
-  },
+  state: {},
   mutations: {
-    likedMovies(state, data) {
+    allMovies(state, data) {
       state.allMovies = data;
     }
   },
   actions: {
-    async SHOW_LIKED_MOVIES({
-      getters,
-      dispatch,
-      commit,
-      rootState,
-      rootGetters
-    }) {
-      commit("setLoading", true);
+    async showLikedMovies({ getters, dispatch, commit }) {
       const likedMovies = [];
       try {
         const uid = await dispatch("getUid");
@@ -31,6 +22,8 @@ export default {
               .ref(`users/${uid}/info`)
               .once("value")
           ).val() || {};
+
+        console.log(allMovies);
 
         for (var key in allMovies) {
           if (allMovies[key].like === true) {
@@ -48,14 +41,16 @@ export default {
                 }
               )
               .then(response => {
+                console.log();
                 let obj = Object.assign({}, response.data);
+                obj.id = key;
                 obj.like = true;
                 likedMovies.push(obj);
-                console.log(likedMovies);
-                console.log("lolo");
               });
           }
         }
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;
@@ -63,6 +58,9 @@ export default {
     }
   },
   getters: {
-    getLikedMovie: s => s.likedMovies
+    getallMovies(state, getters, rootState, rootGetters) {
+      rootGetters.allMovies; //'someOtherGetter' global getter
+      rootGetters["movie/allMovies"]; //'bar/someOtherGetter' namespaced getter
+    }
   }
 };

@@ -13,14 +13,7 @@ export default {
     }
   },
   actions: {
-    async SHOW_LIKED_MOVIES({
-      getters,
-      dispatch,
-      commit,
-      rootState,
-      rootGetters
-    }) {
-      commit("setLoading", true);
+    async SHOW_LIKED_MOVIES({ getters, dispatch, commit, rootGetters }) {
       const likedMovies = [];
       try {
         const uid = await dispatch("getUid");
@@ -51,11 +44,12 @@ export default {
                 let obj = Object.assign({}, response.data);
                 obj.like = true;
                 likedMovies.push(obj);
-                console.log(likedMovies);
-                console.log("lolo");
               });
           }
         }
+        commit("likedMovies", likedMovies);
+
+        console.log("likedMovies:", likedMovies);
       } catch (e) {
         commit("setError", e);
         throw e;
