@@ -56,9 +56,10 @@ export default {
               });
           }
         }
-        commit("likedMovies", likedMovies);
 
-        commit("setError", false);
+        isReadySearch.then(response => {
+          console.log("success", response);
+        });
       } catch (e) {
         commit("setError", e);
         throw e;

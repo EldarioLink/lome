@@ -51,7 +51,6 @@ export default {
                 let obj = Object.assign({}, response.data);
                 obj.like = true;
                 likedMovies.push(obj);
-                console.log(likedMovies);
                 console.log("lolo");
               });
           }

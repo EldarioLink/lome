@@ -32,7 +32,12 @@ export default {
               .once("value")
           ).val() || {};
 
-        for (var key in allMovies) {
+        var isReadySearch = new Promise((resolve, reject) => {
+        
+          resolve;
+        });
+
+        Promise.all(  for (var key in allMovies) {
           if (allMovies[key].like === true) {
             Vue.axios
               .get(
@@ -55,10 +60,12 @@ export default {
                 console.log("lolo");
               });
           }
-        }
-        commit("likedMovies", likedMovies);
+        }).then(value => {
+          commit("likedMovies", value);
 
-        commit("setError", false);
+          console.log(value);
+          commit("setLoading", false);
+        });
       } catch (e) {
         commit("setError", e);
         throw e;

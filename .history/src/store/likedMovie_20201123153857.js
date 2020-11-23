@@ -32,6 +32,10 @@ export default {
               .once("value")
           ).val() || {};
 
+        var p3 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 3000, "three");
+        });
+
         for (var key in allMovies) {
           if (allMovies[key].like === true) {
             Vue.axios
@@ -56,9 +60,6 @@ export default {
               });
           }
         }
-        commit("likedMovies", likedMovies);
-
-        commit("setError", false);
       } catch (e) {
         commit("setError", e);
         throw e;

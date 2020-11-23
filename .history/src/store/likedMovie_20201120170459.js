@@ -56,9 +56,6 @@ export default {
               });
           }
         }
-        commit("likedMovies", likedMovies);
-
-        commit("setError", false);
       } catch (e) {
         commit("setError", e);
         throw e;

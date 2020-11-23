@@ -32,7 +32,7 @@ export default {
               .once("value")
           ).val() || {};
 
-        for (var key in allMovies) {
+       async for (var key in allMovies) {
           if (allMovies[key].like === true) {
             Vue.axios
               .get(

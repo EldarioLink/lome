@@ -58,7 +58,7 @@ export default {
         }
         commit("likedMovies", likedMovies);
 
-        commit("setError", false);
+        commit("setError", e);
       } catch (e) {
         commit("setError", e);
         throw e;
