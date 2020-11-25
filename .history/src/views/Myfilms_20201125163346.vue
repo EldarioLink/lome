@@ -32,10 +32,9 @@ export default {
   name: "myfilms",
   data: () => ({}),
   methods: {
-    ...mapActions(["SHOW_LIKED_MOVIES"]),
-    ...mapActions(["updateFavoriteMovie"]),
+    ...mapActions(["SHOW_LIKED_MOVIES"])б
+      ...mapActions(["updateFavoriteMovie"]),
     likerBtn(id, like) {
-      console.log(id, like);
       this.updateFavoriteMovie({
         like: !like,
         movieId: id

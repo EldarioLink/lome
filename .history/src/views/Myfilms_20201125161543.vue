@@ -4,6 +4,7 @@
       <Loader />
     </div>
     <v-layout v-if="!this.loading && this.likedMovies" class="column">
+      fdf
       <v-flex
         v-for="movie in this.likedMovies"
         :key="movie.id"
@@ -13,7 +14,7 @@
         <v-card elevation="2">
           <v-card-actions>
             <v-card-text>{{ movie.title }}</v-card-text>
-            <v-btn icon @click="likerBtn(movie.id, movie.like)">
+            <v-btn icon>
               <v-icon>{{
                 movie.like ? "mdi-heart" : "mdi-heart-outline"
               }}</v-icon>
@@ -32,15 +33,7 @@ export default {
   name: "myfilms",
   data: () => ({}),
   methods: {
-    ...mapActions(["SHOW_LIKED_MOVIES"]),
-    ...mapActions(["updateFavoriteMovie"]),
-    likerBtn(id, like) {
-      console.log(id, like);
-      this.updateFavoriteMovie({
-        like: !like,
-        movieId: id
-      });
-    }
+    ...mapActions(["SHOW_LIKED_MOVIES"])
   },
   computed: {
     ...mapGetters({ likedMovies: "getLikedMovie", loading: "getLoading" })

@@ -9,10 +9,7 @@ export default {
   },
   mutations: {
     likedMovies(state, data) {
-      state.likedMovies = data;
-    },
-    clearLikedMovies(state) {
-      state.likedMovies = [];
+      state.allMovies = data;
     }
   },
   actions: {
@@ -24,7 +21,7 @@ export default {
       rootGetters
     }) {
       commit("setLoading", true);
-      let localLikedFilms = [];
+      const likedMovies = [];
       try {
         const uid = await dispatch("getUid");
         let allMovies =
@@ -52,18 +49,15 @@ export default {
               ).then(response => {
                 let obj = Object.assign({}, response.data);
                 obj.like = true;
-                localLikedFilms.push(obj);
-                console.log(localLikedFilms);
+                likedMovies.push(obj);
+                console.log(likedMovies);
                 console.log("lolo");
               });
             }
           }
         })();
-        console.log("ready", localLikedFilms);
-        commit("clearLikedMovies");
-
-        commit("likedMovies", localLikedFilms);
-        console.log("datas", this.getters.getLikedMovie);
+        console.log("ready");
+        commit("likedMovies", likedMovies);
 
         commit("setLoading", false);
       } catch (e) {
