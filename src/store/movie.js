@@ -66,7 +66,7 @@ export default {
         )
         .then(response => {
           dispatch("FETCHMOVIE_BY_ID", response.data.titles).then(movieData => {
-            console.log(response);
+            console.log("response", response);
             this.commit("setMovie", movieData);
             commit("setLoading", false);
           });
@@ -76,18 +76,21 @@ export default {
           throw err;
         });
     },
-    async updateFavoriteMovie({ dispatch, commit }, { like, movieId }) {
+    async LIKEMOVIE(
+      { dispatch, commit },
+      { like, likedId, likedImage, title }
+    ) {
       try {
         const uid = await dispatch("getUid");
         await firebase
           .database()
           .ref(`users/${uid}/info`)
-          .child(movieId)
-          .update({ like });
+          .child(likedId)
+          .update({ like, likedImage, title });
         const moviesLikeChange = this.getters.getMovie;
 
         moviesLikeChange.map(oneMovie => {
-          if (oneMovie.id === movieId) {
+          if (oneMovie.id === likedId) {
             oneMovie.like = like;
           }
         });
