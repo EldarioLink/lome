@@ -34,35 +34,13 @@ export default {
               .ref(`users/${uid}/info`)
               .once("value")
           ).val() || {};
-
-        await (async () => {
-          for (var key in allMovies) {
-            if (allMovies[key].like === true) {
-              await Vue.axios(
-                `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${key}`,
-                {
-                  method: "GET",
-                  headers: {
-                    "x-rapidapi-host":
-                      "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-                    "x-rapidapi-key":
-                      "a67b43680emshc2b8ff4a8bf27ebp149f8ejsn7963f988d678"
-                  }
-                }
-              ).then(response => {
-                let obj = Object.assign({}, response.data);
-                obj.like = true;
-                localLikedFilms.push(obj);
-              });
-            }
+        for (var key in allMovies) {
+          if (allMovies[key].like === true) {
+            localLikedFilms.push(allMovies[key]);
           }
-        })();
-        console.log("ready", localLikedFilms);
+        }
         commit("clearLikedMovies");
-
         commit("likedMovies", localLikedFilms);
-        console.log("datas", this.getters.getLikedMovie);
-
         commit("setLoading", false);
       } catch (e) {
         commit("setError", e);
