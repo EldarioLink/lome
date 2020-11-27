@@ -13,7 +13,7 @@
         <v-card elevation="2">
           <v-card-actions>
             <v-card-text>{{ movie.title }}</v-card-text>
-            <v-btn icon @click="likerBtn(movie.id, movie.like)">
+            <v-btn icon @click="likerBtn(movie.likedId, movie.like)">
               <v-icon>{{
                 movie.like ? "mdi-heart" : "mdi-heart-outline"
               }}</v-icon>
@@ -33,10 +33,10 @@ export default {
   data: () => ({}),
   methods: {
     ...mapActions(["SHOW_LIKED_MOVIES"]),
-    ...mapActions(["updateFavoriteMovie"]),
+    ...mapActions(["LIKE_MOVIE_FROM_COMP"]),
     likerBtn(id, like) {
-      console.log(id, like);
-      this.updateFavoriteMovie({
+      console.log(typeof id, like);
+      this.LIKE_MOVIE_FROM_COMP({
         like: !like,
         movieId: id
       });

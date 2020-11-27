@@ -86,7 +86,7 @@ export default {
           .database()
           .ref(`users/${uid}/info`)
           .child(likedId)
-          .update({ like, likedImage, title });
+          .update({ like, likedImage, title, likedId });
         const moviesLikeChange = this.getters.getMovie;
 
         moviesLikeChange.map(oneMovie => {
