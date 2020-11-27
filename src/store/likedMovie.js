@@ -39,7 +39,8 @@ export default {
             localLikedFilms.push(allMovies[key]);
           }
         }
-        commit("clearLikedMovies");
+        //commit("clearLikedMovies");
+        console.log(localLikedFilms);
         commit("likedMovies", localLikedFilms);
         commit("setLoading", false);
       } catch (e) {
@@ -63,8 +64,9 @@ export default {
             oneMovie.like = like;
           }
         });
-
+        console.log(typeof moviesLikeChange);
         commit("clearLikedMovies");
+        // commit("likedMovies", moviesLikeChange);
       } catch (e) {
         commit("setError", e);
         throw e;

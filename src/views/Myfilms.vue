@@ -3,7 +3,7 @@
     <div v-if="this.loading">
       <Loader />
     </div>
-    <v-layout v-if="!this.loading && this.likedMovies" class="column">
+    <v-layout v-else-if="isFilmExist" class="column">
       <v-flex
         v-for="movie in this.likedMovies"
         :key="movie.id"
@@ -13,6 +13,7 @@
         <v-card elevation="2">
           <v-card-actions>
             <v-card-text>{{ movie.title }}</v-card-text>
+
             <v-btn icon @click="likerBtn(movie.likedId, movie.like)">
               <v-icon>{{
                 movie.like ? "mdi-heart" : "mdi-heart-outline"
@@ -22,6 +23,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-layout v-else> No favorite films now. Please add them</v-layout>
   </div>
 </template>
 
@@ -43,11 +45,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ likedMovies: "getLikedMovie", loading: "getLoading" })
+    ...mapGetters({ likedMovies: "getLikedMovie", loading: "getLoading" }),
+    isFilmExist() {
+      return this.likedMovies.length > 0 ? true : false;
+    }
   },
   watch: {},
   mounted() {
+    console.log(this.likedMovies);
+
     this.SHOW_LIKED_MOVIES();
+    console.log(this.likedMovies);
   },
   destroyed() {}
 };
