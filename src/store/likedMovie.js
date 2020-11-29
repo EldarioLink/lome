@@ -39,8 +39,7 @@ export default {
             localLikedFilms.push(allMovies[key]);
           }
         }
-        //commit("clearLikedMovies");
-        console.log(localLikedFilms);
+        localLikedFilms = localLikedFilms.length > 0 ? localLikedFilms : null;
         commit("likedMovies", localLikedFilms);
         commit("setLoading", false);
       } catch (e) {
@@ -50,23 +49,20 @@ export default {
     },
     async LIKE_MOVIE_FROM_COMP({ dispatch, commit }, { like, movieId }) {
       try {
-        console.log(like, typeof movieId);
         const uid = await dispatch("getUid");
         await firebase
           .database()
           .ref(`users/${uid}/info`)
           .child(movieId)
           .update({ like });
-        const moviesLikeChange = this.getters.getLikedMovie;
-
-        moviesLikeChange.map(oneMovie => {
-          if (oneMovie.id === movieId) {
+        const likedFilms = this.getters.getLikedMovie;
+        likedFilms.map(oneMovie => {
+          if (oneMovie.likedId === movieId) {
             oneMovie.like = like;
           }
         });
-        console.log(typeof moviesLikeChange);
-        commit("clearLikedMovies");
-        // commit("likedMovies", moviesLikeChange);
+        commit("clearLikedMovies")
+        commit("likedMovies", likedFilms);
       } catch (e) {
         commit("setError", e);
         throw e;

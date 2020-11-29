@@ -37,7 +37,6 @@ export default {
     ...mapActions(["SHOW_LIKED_MOVIES"]),
     ...mapActions(["LIKE_MOVIE_FROM_COMP"]),
     likerBtn(id, like) {
-      console.log(typeof id, like);
       this.LIKE_MOVIE_FROM_COMP({
         like: !like,
         movieId: id
@@ -46,16 +45,13 @@ export default {
   },
   computed: {
     ...mapGetters({ likedMovies: "getLikedMovie", loading: "getLoading" }),
-    isFilmExist() {
-      return this.likedMovies.length > 0 ? true : false;
+    isFilmExist() { 
+      return this.likedMovies ? true : false;
     }
   },
   watch: {},
-  mounted() {
-    console.log(this.likedMovies);
-
+  mounted() { 
     this.SHOW_LIKED_MOVIES();
-    console.log(this.likedMovies);
   },
   destroyed() {}
 };
