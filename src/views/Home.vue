@@ -22,16 +22,15 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn text color="deep-purple accent-4">
-                Подробнее
-              </v-btn>
-              <v-spacer></v-spacer>
               <v-btn
-                icon
-                @click="
-                  likerBtn(movie.id, movie.like, movie.image, movie.title)
-                "
+                @click.stop="showInfo(movie.id)"
+                text
+                color="deep-purple accent-4"
               >
+                MORE...</v-btn
+              >
+              <v-spacer></v-spacer>
+              <v-btn icon @click="likerBtn(movie)">
                 <v-icon>{{
                   movie.like ? "mdi-heart" : "mdi-heart-outline"
                 }}</v-icon>
@@ -40,6 +39,28 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">{{}} </v-card-title>
+
+          <v-card-text>
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Disagree
+            </v-btn>
+
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Go trailer
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <div class="text-center pt-5">
         <v-pagination
@@ -57,17 +78,32 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     page: 1,
-    perPage: 8
+    perPage: 8,
+    dialog: false,
+    movieInfo: {}
   }),
   methods: {
-    ...mapActions(["LIKEMOVIE"]),
-    likerBtn(id, like, image, title) {
+    ...mapActions(["LIKEMOVIE", "SHOW_MOVIE_INFO"]),
+    likerBtn(movie) {
+      console.log(movie);
       this.LIKEMOVIE({
-        like: !like,
-        likedId: id,
-        likedImage: image,
-        title
+        like: !movie.like,
+        likedId: movie.id,
+        likedImage: movie.image,
+        title: movie.title
       });
+    },
+    async showInfo(movieId) {
+      let moviesPie = null;
+      let movieInfo = await this.SHOW_MOVIE_INFO({
+        movieId
+      }).then(response => {
+        console.log("showed");
+        moviesPie = response;
+        this.dialog = true;
+      });
+      console.log("pie", moviesPie);
+      console.log("infoMovies", movieInfo);
     }
   },
   computed: {

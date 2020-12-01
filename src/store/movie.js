@@ -101,6 +101,30 @@ export default {
         commit("setError", e);
         throw e;
       }
+    },
+    async SHOW_MOVIE_INFO({ commit, dispatch }, movieId) {
+      try {
+        await Vue.axios
+          .get(
+            `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${movieId}`,
+            {
+              method: "GET",
+              headers: {
+                "x-rapidapi-host":
+                  "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+                "x-rapidapi-key":
+                  "a67b43680emshc2b8ff4a8bf27ebp149f8ejsn7963f988d678"
+              }
+            }
+          )
+          .then(response => {
+            console.log("actions", response.data);
+            return response.data;
+          });
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
     }
   },
   getters: {

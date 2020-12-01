@@ -8,7 +8,7 @@
         v-for="movie in this.likedMovies"
         :key="movie.id"
         max-width="344"
-        class="md2 pr-2 pt-2 "
+        class="md2 pr-2 pt-2"
       >
         <v-card elevation="2">
           <v-card-actions>
@@ -45,12 +45,12 @@ export default {
   },
   computed: {
     ...mapGetters({ likedMovies: "getLikedMovie", loading: "getLoading" }),
-    isFilmExist() { 
+    isFilmExist() {
       return this.likedMovies ? true : false;
     }
   },
   watch: {},
-  mounted() { 
+  mounted() {
     this.SHOW_LIKED_MOVIES();
   },
   destroyed() {}
