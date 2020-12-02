@@ -104,23 +104,21 @@ export default {
     },
     async SHOW_MOVIE_INFO({ commit, dispatch }, movieId) {
       try {
-        await Vue.axios
-          .get(
-            `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${movieId}`,
-            {
-              method: "GET",
-              headers: {
-                "x-rapidapi-host":
-                  "imdb-internet-movie-database-unofficial.p.rapidapi.com",
-                "x-rapidapi-key":
-                  "a67b43680emshc2b8ff4a8bf27ebp149f8ejsn7963f988d678"
-              }
+        console.log(`get this id in js file${movieId}`);
+        const movieInfo = await Vue.axios.get(
+          `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${movieId}`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host":
+                "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+              "x-rapidapi-key":
+                "a67b43680emshc2b8ff4a8bf27ebp149f8ejsn7963f988d678"
             }
-          )
-          .then(response => {
-            console.log("actions", response.data);
-            return response.data;
-          });
+          }
+        );
+        console.log("response from js file", movieInfo);
+        return movieInfo.data;
       } catch (e) {
         commit("setError", e);
         throw e;

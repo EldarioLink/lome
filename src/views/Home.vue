@@ -41,11 +41,12 @@
       </v-layout>
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
-          <v-card-title class="headline">{{}} </v-card-title>
+          <v-card-title class="headline"
+            >{{ this.dialogInfo.title }}
+          </v-card-title>
 
           <v-card-text>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            {{ this.dialogInfo.plot }}
           </v-card-text>
 
           <v-card-actions>
@@ -80,7 +81,7 @@ export default {
     page: 1,
     perPage: 8,
     dialog: false,
-    movieInfo: {}
+    dialogInfo: {}
   }),
   methods: {
     ...mapActions(["LIKEMOVIE", "SHOW_MOVIE_INFO"]),
@@ -94,16 +95,8 @@ export default {
       });
     },
     async showInfo(movieId) {
-      let moviesPie = null;
-      let movieInfo = await this.SHOW_MOVIE_INFO({
-        movieId
-      }).then(response => {
-        console.log("showed");
-        moviesPie = response;
-        this.dialog = true;
-      });
-      console.log("pie", moviesPie);
-      console.log("infoMovies", movieInfo);
+      this.dialogInfo = await this.SHOW_MOVIE_INFO(movieId);
+      this.dialog = true;
     }
   },
   computed: {
@@ -113,6 +106,9 @@ export default {
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
+    },
+    isOpen() {
+      return this.dialog && this.dialogInfo;
     }
   },
   mounted() {}
