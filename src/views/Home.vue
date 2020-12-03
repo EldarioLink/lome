@@ -39,10 +39,10 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <v-dialog v-model="dialog" max-width="290">
-        <v-card>
-          <v-card-title class="headline"
-            >{{ this.dialogInfo.title }}
+      <v-dialog v-model="dialog" max-width="490">
+        <v-card v-if="this.dialogInfo">
+          <v-card-title>
+            {{ this.dialogInfo.title || "нет данных" }}
           </v-card-title>
 
           <v-card-text>
@@ -52,15 +52,16 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="green darken-1" text @click="dialog = false">
-              Disagree
-            </v-btn>
-
-            <v-btn color="green darken-1" text @click="dialog = false">
-              Go trailer
+            <v-btn
+              color="green darken-1"
+              :href="this.dialogInfo.trailer.link"
+              target="_blank"
+            >
+              {{ this.dialogInfo.trailer.link || "нет данных" }}
             </v-btn>
           </v-card-actions>
         </v-card>
+        <v-card v-else> "Пока данных нет" </v-card>
       </v-dialog>
 
       <div class="text-center pt-5">
@@ -81,7 +82,7 @@ export default {
     page: 1,
     perPage: 8,
     dialog: false,
-    dialogInfo: {}
+    dialogInfo: null
   }),
   methods: {
     ...mapActions(["LIKEMOVIE", "SHOW_MOVIE_INFO"]),
@@ -108,7 +109,7 @@ export default {
       );
     },
     isOpen() {
-      return this.dialog && this.dialogInfo;
+      return this.dialog && !!this.dialogInfo;
     }
   },
   mounted() {}
