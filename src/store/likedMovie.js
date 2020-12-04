@@ -41,7 +41,6 @@ export default {
         }
         localLikedFilms = localLikedFilms.length > 0 ? localLikedFilms : null;
         commit("likedMovies", localLikedFilms);
-        console.log(localLikedFilms);
         commit("setLoading", false);
       } catch (e) {
         commit("setError", e);

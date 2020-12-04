@@ -1,22 +1,36 @@
 <template>
   <div>
-    profile
+    <v-sheet class="pa-5">
+      <v-switch
+        v-model="switch1"
+        inset
+        :label="`Dark mode: ${darkStatus}`"
+      ></v-switch>
+    </v-sheet>
   </div>
 </template>
 
 <script>
 export default {
   name: "proflile",
-  data: () => ({}),
+  data: () => ({
+    switch1: null
+  }),
   methods: {},
-  computed: {},
-  watch: {},
-  mounted() {
-    console.log("Proflile mounted");
+  computed: {
+    darkStatus() {
+      return this.switch1 ? "on" : "off";
+    }
   },
-  destroyed() {
-    console.log("Proflile destroied");
-  }
+  watch: {
+    switch1(newValue) {
+      this.$vuetify.theme.dark = newValue;
+    }
+  },
+  mounted() {
+    this.switch1 = this.$vuetify.theme.dark;
+  },
+  destroyed() {}
 };
 </script>
 

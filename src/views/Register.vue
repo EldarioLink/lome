@@ -94,15 +94,12 @@ export default {
   }),
   methods: {
     async submitHandler() {
-      console.log("Do THat");
       const formData = {
         email: this.email,
         password: this.password,
         name: this.name
       };
       try {
-        console.log("Do THat1");
-
         await this.$store.dispatch("register", formData);
         this.$router.push("/");
         // eslint-disable-next-line no-empty

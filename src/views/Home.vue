@@ -39,18 +39,6 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <!-- <v-dialog v-model="dialog" hide-overlay persistent width="300">
-        <v-card color="primary" dark>
-          <v-card-text>
-            Please stand by
-            <v-progress-linear
-              indeterminate
-              color="white"
-              class="mb-0"
-            ></v-progress-linear>
-          </v-card-text>
-        </v-card>
-      </v-dialog> -->
       <v-dialog v-model="dialog" max-width="490" overflow-y-none>
         <v-card v-if="this.dialogInfo">
           <v-card-title>
@@ -136,7 +124,6 @@ export default {
   methods: {
     ...mapActions(["LIKEMOVIE", "SHOW_MOVIE_INFO"]),
     likerBtn(movie) {
-      console.log(movie);
       this.LIKEMOVIE({
         like: !movie.like,
         likedId: movie.id,

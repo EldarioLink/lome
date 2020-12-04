@@ -23,7 +23,12 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout v-else> No favorite films now. Please add them</v-layout>
+    <v-layout v-else>
+      No favorite films now. Please search and add them -
+      <a @click.stop="redirectToSearch()" text color="primary">
+        Search</a
+      ></v-layout
+    >
   </div>
 </template>
 
@@ -41,6 +46,9 @@ export default {
         like: !like,
         movieId: id
       });
+    },
+    redirectToSearch() {
+      this.$router.push("/");
     }
   },
   computed: {

@@ -7,7 +7,6 @@ export default {
     async login({ dispatch, commit }, { email, password }) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
-        console.log("loginStore");
         // eslint-disable-next-line no-empty
       } catch (e) {
         commit("setError", e);
@@ -17,8 +16,6 @@ export default {
     async register({ dispatch, commit }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        console.log("RegistrStore");
-
         // eslint-disable-next-line no-empty
       } catch (e) {
         commit("setError", e);

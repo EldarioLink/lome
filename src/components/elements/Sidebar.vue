@@ -39,8 +39,7 @@ export default {
     };
   },
   methods: {
-    async logout(event) {
-      console.log(event);
+    async logout() {
       await this.$store.dispatch("logout");
       this.$router.push("/login?message=logout");
     },
