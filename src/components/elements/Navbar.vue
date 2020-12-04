@@ -15,13 +15,12 @@
         solo
         background-color="blue-grey lighten-4"
         hide-details
-        color="grey"
         prepend-inner-icon="mdi-magnify"
         label="Найти фильм"
         class="hidden-sm-and-down"
       ></v-text-field>
       <div class="pa-2">
-        <v-btn @click="search(movieName)" dark block>Поиск</v-btn>
+        <v-btn @click="search(movieName)" dark block>Search</v-btn>
       </div>
     </v-layout>
   </v-app-bar>

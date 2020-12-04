@@ -31,10 +31,10 @@ export default {
   data() {
     return {
       items: [
-        { title: "Фильмотека", icon: "mdi-home" },
-        { title: "Мои фильмы", icon: "mdi-star" },
-        { title: "Профиль", icon: "mdi-account-circle" },
-        { title: "Выйти", icon: "mdi-exit-to-app" }
+        { title: "Movies library", icon: "mdi-home" },
+        { title: "My movies", icon: "mdi-star" },
+        { title: "Profile", icon: "mdi-account-circle" },
+        { title: "Exit", icon: "mdi-exit-to-app" }
       ]
     };
   },
@@ -45,18 +45,18 @@ export default {
       this.$router.push("/login?message=logout");
     },
     async clickHandler(title) {
-      if (title === "Выйти") {
+      if (title === "Exit") {
         const res = await this.$dialog.confirm({
-          text: "Вы действительно хотите выйти?",
-          title: "Предупреждение",
+          text: "Are you sure?",
+          title: "Warning",
           persistent: false
         });
         res ? this.logout() : null;
-      } else if (title === "Мои фильмы" && this.$route.path !== "/myfilms") {
+      } else if (title === "My movies" && this.$route.path !== "/myfilms") {
         this.$router.push("/myfilms");
-      } else if (title === "Профиль" && this.$route.path !== "/profile") {
+      } else if (title === "Profile" && this.$route.path !== "/profile") {
         this.$router.push("/profile");
-      } else if (title === "Фильмотека" && this.$route.path !== "/") {
+      } else if (title === "Movies library" && this.$route.path !== "/") {
         this.$router.push("/");
       }
     }

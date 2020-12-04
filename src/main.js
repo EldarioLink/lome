@@ -31,9 +31,9 @@ Vue.use(VuetifyDialog, {
   },
   confirm: {
     actions: {
-      false: "Нет",
+      false: "No",
       true: {
-        text: "Да",
+        text: "Yes",
         color: "primary"
       }
     },
