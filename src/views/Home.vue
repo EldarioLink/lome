@@ -25,9 +25,9 @@
               <v-btn
                 @click.stop="showInfo(movie.id)"
                 text
-                color="deep-purple accent-4"
+                color="primary accent-4"
               >
-                MORE...</v-btn
+                info</v-btn
               >
               <v-spacer></v-spacer>
               <v-btn icon @click="likerBtn(movie)">
@@ -39,14 +39,53 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <v-dialog v-model="dialog" max-width="490">
+      <!-- <v-dialog v-model="dialog" hide-overlay persistent width="300">
+        <v-card color="primary" dark>
+          <v-card-text>
+            Please stand by
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog> -->
+      <v-dialog v-model="dialog" max-width="490" overflow-y-none>
         <v-card v-if="this.dialogInfo">
           <v-card-title>
-            {{ this.dialogInfo.title || "нет данных" }}
+            {{ this.dialogInfo.title || "Execuse please. No movie info!" }}
           </v-card-title>
 
-          <v-card-text>
-            {{ this.dialogInfo.plot }}
+          <v-card-text v-if="this.dialogInfo.plot">
+            <div class="font-weight-black">
+              Description:
+            </div>
+            {{ this.dialogInfo.plot || "no data" }}
+          </v-card-text>
+          <v-card-text v-if="this.dialogInfo.year">
+            <div class="font-weight-black">
+              Year:
+            </div>
+            {{ this.dialogInfo.year || "" }}
+          </v-card-text>
+          <v-card-text v-if="this.dialogInfo.length">
+            <div class="font-weight-black">
+              Duration:
+            </div>
+            {{ this.dialogInfo.length }}
+          </v-card-text>
+          <v-card-text v-if="this.dialogInfo.rating">
+            <div class="font-weight-black">
+              Rating on IMDB:
+            </div>
+            {{ this.dialogInfo.rating }}
+          </v-card-text>
+          <v-card-text v-if="this.dialogInfo.rating_votes">
+            <div class="font-weight-black">
+              All votes:
+            </div>
+            {{ this.dialogInfo.rating_votes }}
           </v-card-text>
 
           <v-card-actions>
@@ -56,12 +95,22 @@
               color="green darken-1"
               :href="this.dialogInfo.trailer.link"
               target="_blank"
+              v-if="this.dialogInfo.trailer.link"
             >
-              {{ this.dialogInfo.trailer.link || "нет данных" }}
+              {{ "Go trailer" }}
             </v-btn>
           </v-card-actions>
         </v-card>
-        <v-card v-else> "Пока данных нет" </v-card>
+        <v-card v-else color="green" dark>
+          <v-card-text>
+            loading movie info
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
       </v-dialog>
 
       <div class="text-center pt-5">
@@ -107,9 +156,6 @@ export default {
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
-    },
-    isOpen() {
-      return this.dialog && !!this.dialogInfo;
     }
   },
   mounted() {}
